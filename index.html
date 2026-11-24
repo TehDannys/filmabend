@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111216" id="theme-color-meta">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Filmabend">
+  <meta name="description" content="Schnelle, stressfreie Film- und Serienauswahl für gemeinsame Abende.">
+  <title>Filmabend – Schnelle Filmauswahl</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="./icons/icon.svg">
+  <link rel="apple-touch-icon" href="./icons/icon.svg">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="top-bar">
+      <div class="top-bar-inner">
+        <div class="brand">
+          <img src="./icons/icon.svg" alt="" class="brand-logo" width="32" height="32">
+          <div>
+            <h1 class="brand-title">Filmabend</h1>
+            <p class="brand-sub">In 30 Sekunden zum passenden Film</p>
+          </div>
+        </div>
+        <div class="top-actions">
+          <button type="button" id="theme-toggle-btn" class="icon-btn" aria-label="Farbschema wechseln" title="Hell/Dunkel wechseln">🌙</button>
+          <button type="button" id="sync-btn" class="icon-btn" aria-label="Backup & Sync" title="Backup &amp; Sync">⚙️</button>
+          <button type="button" id="add-btn" class="btn btn-primary btn-sm">+ Neu</button>
+        </div>
+      </div>
+
+      <nav class="tab-bar" aria-label="Ansichten">
+        <button type="button" class="tab-btn is-active" data-tab="open">
+          Offen <span class="tab-count" id="count-open">0</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="watched">
+          Gesehen <span class="tab-count" id="count-watched">0</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="avoid">
+          Eher nicht <span class="tab-count" id="count-avoid">0</span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <section class="filter-panel" aria-label="Schnellfilter">
+        <div class="chip-scroll" id="mood-chips" role="group" aria-label="Stimmung und Verfügbarkeit"></div>
+
+        <div class="filter-row-secondary">
+          <div class="filter-controls">
+            <select id="type-filter" class="select-compact" aria-label="Format filtern">
+              <option value="all">Alle Formate</option>
+              <option value="film">Nur Filme &amp; Dokus</option>
+              <option value="series">Nur Serien</option>
+            </select>
+            <select id="recommender-filter" class="select-compact" aria-label="Empfehlung filtern">
+              <option value="all">Alle Quellen</option>
+            </select>
+            <input type="search" id="search-input" class="search-compact" placeholder="Titel oder Stichwort…" aria-label="Titel oder Stichwort suchen">
+          </div>
+          <div class="filter-actions-pair">
+            <button type="button" id="quick-btn" class="btn btn-primary">
+              ⚡ Schnell-Entscheid
+            </button>
+            <button type="button" id="random-btn" class="btn btn-accent">
+              🎲 Zufall
+            </button>
+          </div>
+        </div>
+
+        <div id="shortlist-bar" class="shortlist-bar" hidden>
+          <div class="shortlist-bar-info">
+            <span>📌 Gemerkt für heute: <strong id="shortlist-count">0</strong></span>
+          </div>
+          <div class="shortlist-bar-actions">
+            <button type="button" id="shortlist-open-btn" class="btn btn-primary btn-sm">Vergleichen</button>
+            <button type="button" id="shortlist-clear-btn" class="btn btn-ghost btn-sm">Leeren</button>
+          </div>
+        </div>
+      </section>
+
+      <div id="watched-profile-banner" class="profile-banner" hidden>
+        <div class="profile-banner-text">
+          <strong>Neue Empfehlungen gesucht?</strong>
+          <span>Kopiere euer Geschmacksprofil mit Bewertungen &amp; No-Gos für die nächste Filmrunde.</span>
+        </div>
+        <button type="button" id="export-profile-btn" class="btn btn-secondary btn-sm">📋 Geschmacksprofil kopieren</button>
+      </div>
+
+      <div class="results-meta">
+        <span id="results-summary">Lade Filmliste…</span>
+        <button type="button" id="reset-filters-btn" class="link-btn" hidden>Filter zurücksetzen</button>
+      </div>
+
+      <section id="cards-grid" class="cards-grid" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <!-- Zufallsvorschlag Modal -->
+  <dialog id="random-dialog" class="sheet-dialog" aria-labelledby="random-dialog-title">
+    <div class="sheet-card">
+      <div class="sheet-header">
+        <div>
+          <span class="sheet-eyebrow">Euer Abend-Vorschlag</span>
+          <h2 id="random-dialog-title" class="sheet-title">Zufallstreffer</h2>
+        </div>
+        <button type="button" class="icon-btn dialog-close" data-close-dialog="random-dialog" aria-label="Schließen">✕</button>
+      </div>
+      <div id="random-dialog-body" class="sheet-body"></div>
+      <div class="sheet-footer">
+        <button type="button" id="reroll-btn" class="btn btn-secondary">🎲 Nochmal würfeln</button>
+        <a id="random-trailer-link" class="btn btn-trailer" target="_blank" rel="noopener noreferrer">▶ Trailer (DE)</a>
+        <button type="button" id="random-accept-btn" class="btn btn-primary" data-close-dialog="random-dialog">Passt, nehmen wir!</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Gemeinsames Urteil Modal -->
+  <dialog id="rate-dialog" class="sheet-dialog" aria-labelledby="rate-dialog-title">
+    <form id="rate-form" class="sheet-card" method="dialog">
+      <div class="sheet-header">
+        <div>
+          <span class="sheet-eyebrow">Unser gemeinsames Urteil</span>
+          <h2 id="rate-dialog-title" class="sheet-title">Wie fanden wir ihn zusammen?</h2>
+        </div>
+        <button type="button" class="icon-btn dialog-close" data-close-dialog="rate-dialog" aria-label="Abbrechen">✕</button>
+      </div>
+      <div class="sheet-body">
+        <p class="rate-movie-name" id="rate-movie-name"></p>
+        <div class="verdict-list" id="verdict-options" role="radiogroup" aria-label="Gemeinsame Bewertung"></div>
+        <label class="field-label" for="rate-note-input">
+          Unser kurzes Fazit (optional, 1 Satz)
+          <input type="text" id="rate-note-input" class="text-input" maxlength="180" placeholder="z. B. Tolle Dialoge, genau unser Tempo am Freitagabend">
+        </label>
+      </div>
+      <div class="sheet-footer">
+        <button type="button" class="btn btn-ghost" data-close-dialog="rate-dialog">Abbrechen</button>
+        <button type="submit" class="btn btn-primary">✓ Gemeinsam speichern</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Hinzufügen / Bearbeiten Modal -->
+  <dialog id="edit-dialog" class="sheet-dialog" aria-labelledby="edit-dialog-title">
+    <form id="edit-form" class="sheet-card" method="dialog">
+      <div class="sheet-header">
+        <div>
+          <span class="sheet-eyebrow" id="edit-dialog-eyebrow">Eintrag pflegen</span>
+          <h2 id="edit-dialog-title" class="sheet-title">Neuen Film hinzufügen</h2>
+        </div>
+        <button type="button" class="icon-btn dialog-close" data-close-dialog="edit-dialog" aria-label="Schließen">✕</button>
+      </div>
+      <div class="sheet-body form-grid">
+        <input type="hidden" id="edit-id">
+        <div class="field-row-2">
+          <label class="field-label">
+            Titel *
+            <input type="text" id="edit-title" class="text-input" required placeholder="z. B. Der Vorname">
+          </label>
+          <label class="field-label">
+            Originaltitel (optional)
+            <input type="text" id="edit-original-title" class="text-input" placeholder="z. B. Le Prénom">
+          </label>
+        </div>
+
+        <div class="field-row-3">
+          <label class="field-label">
+            Format *
+            <select id="edit-type" class="text-input">
+              <option value="film">Film</option>
+              <option value="series">Serie</option>
+              <option value="doc">Dokumentation</option>
+            </select>
+          </label>
+          <label class="field-label">
+            Jahr
+            <input type="number" id="edit-year" class="text-input" min="1920" max="2035" placeholder="2021">
+          </label>
+          <label class="field-label">
+            Minuten (pro Film/Folge)
+            <input type="number" id="edit-runtime-minutes" class="text-input" min="5" max="400" placeholder="95">
+          </label>
+        </div>
+
+        <label class="field-label">
+          Laufzeit-Anzeige *
+          <input type="text" id="edit-runtime-label" class="text-input" required placeholder="z. B. 95 Min. oder 4 Staffeln · ~20 Min./Folge">
+        </label>
+
+        <fieldset class="field-fieldset">
+          <legend class="field-label-text">Stimmung (Mehrfachauswahl)</legend>
+          <div class="mood-checkboxes" id="edit-mood-boxes"></div>
+        </fieldset>
+
+        <div class="field-row-2">
+          <label class="field-label">
+            Passung für euch
+            <select id="edit-fit" class="text-input">
+              <option value="high">★ Passt super</option>
+              <option value="medium">◐ Je nach Stimmung</option>
+              <option value="low">⚠ Passt eher nicht</option>
+            </select>
+          </label>
+          <label class="field-label">
+            Frei verfügbar (optional)
+            <input type="text" id="edit-free-source" class="text-input" placeholder="z. B. ARD Mediathek">
+          </label>
+        </div>
+
+        <label class="field-label">
+          Hinweis zur Passung (optional)
+          <input type="text" id="edit-fit-reason" class="text-input" placeholder="z. B. Sehr gut, aber emotional recht schwer">
+        </label>
+
+        <label class="field-label">
+          Worum geht's? (2–3 Sätze für euch) *
+          <textarea id="edit-summary" class="text-input text-area" rows="3" required placeholder="Kurz, spoilerfrei und auf den Punkt: Handlung + wie sich der Film anfühlt."></textarea>
+        </label>
+
+        <div class="field-row-2">
+          <label class="field-label">
+            Empfohlen von
+            <input type="text" id="edit-recommended-by" class="text-input" list="recommender-suggestions" placeholder="Selbst notiert">
+            <datalist id="recommender-suggestions">
+              <option value="Selbst notiert"></option>
+              <option value="Arbeitskollegen"></option>
+              <option value="Mutter (ARD Mediathek)"></option>
+            </datalist>
+          </label>
+          <label class="field-label">
+            Notiz zur Empfehlung (optional)
+            <input type="text" id="edit-rec-note" class="text-input" placeholder="z. B. Vermerk: sehr gut">
+          </label>
+        </div>
+
+        <label class="field-label">
+          Deutscher YouTube-Trailer-Link
+          <input type="url" id="edit-trailer-url" class="text-input" placeholder="https://www.youtube.com/watch?v=...">
+        </label>
+
+        <label class="field-label">
+          Poster-Bild-URL (optional)
+          <input type="url" id="edit-poster-url" class="text-input" placeholder="https://...">
+        </label>
+      </div>
+      <div class="sheet-footer">
+        <button type="button" id="edit-delete-btn" class="btn btn-danger-ghost" hidden>Löschen</button>
+        <div class="spacer"></div>
+        <button type="button" class="btn btn-ghost" data-close-dialog="edit-dialog">Abbrechen</button>
+        <button type="submit" class="btn btn-primary">Speichern</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Backup & Sync Modal -->
+  <dialog id="sync-dialog" class="sheet-dialog" aria-labelledby="sync-dialog-title">
+    <div class="sheet-card">
+      <div class="sheet-header">
+        <div>
+          <span class="sheet-eyebrow">Daten &amp; Geräte</span>
+          <h2 id="sync-dialog-title" class="sheet-title">Backup &amp; Synchronisation</h2>
+        </div>
+        <button type="button" class="icon-btn dialog-close" data-close-dialog="sync-dialog" aria-label="Schließen">✕</button>
+      </div>
+      <div class="sheet-body sync-body">
+        <div class="status-box" id="storage-status-box"></div>
+
+        <div class="sync-section">
+          <h3>Sicherung (JSON)</h3>
+          <p class="muted-text">Exportiere den aktuellen Stand inklusive eurer Bewertungen oder lade ein Backup von einem anderen Gerät.</p>
+          <div class="button-row">
+            <button type="button" id="export-json-btn" class="btn btn-secondary">↓ Backup exportieren</button>
+            <label class="btn btn-secondary file-btn">
+              ↑ Backup importieren
+              <input type="file" id="import-json-input" accept="application/json,.json" hidden>
+            </label>
+          </div>
+        </div>
+
+        <details class="sync-section">
+          <summary class="details-summary">Optional: GitHub-Sync für mehrere Geräte einrichten</summary>
+          <p class="muted-text">Wenn die App über GitHub Pages läuft, könnt ihr Änderungen direkt in euer Repo (<code>data/movies.json</code>) speichern und laden.</p>
+          <form id="github-sync-form" class="form-grid">
+            <div class="field-row-2">
+              <label class="field-label">
+                GitHub-Nutzer / Org
+                <input type="text" id="gh-owner" class="text-input" placeholder="z. B. danielgerhardt">
+              </label>
+              <label class="field-label">
+                Repository-Name
+                <input type="text" id="gh-repo" class="text-input" placeholder="z. B. filmabend">
+              </label>
+            </div>
+            <div class="field-row-2">
+              <label class="field-label">
+                Branch
+                <input type="text" id="gh-branch" class="text-input" value="main">
+              </label>
+              <label class="field-label">
+                Personal Access Token
+                <input type="password" id="gh-token" class="text-input" placeholder="github_pat_...">
+              </label>
+            </div>
+            <div class="button-row">
+              <button type="submit" class="btn btn-secondary">Einstellungen sichern</button>
+              <button type="button" id="gh-pull-btn" class="btn btn-secondary">↓ Von GitHub laden</button>
+              <button type="button" id="gh-push-btn" class="btn btn-primary">↑ Zu GitHub senden</button>
+            </div>
+            <p class="muted-text" id="gh-sync-feedback"></p>
+          </form>
+        </details>
+
+        <div class="sync-section">
+          <h3>Geschmacksprofil für neue Empfehlungen</h3>
+          <p class="muted-text">Erstellt einen kompakten Text mit euren bewerteten Filmen, Vorlieben und No-Gos zum Einfügen in einen Chat.</p>
+          <div class="button-row">
+            <button type="button" id="sync-export-profile-btn" class="btn btn-secondary">📋 Geschmacksprofil kopieren</button>
+          </div>
+        </div>
+
+        <div class="sync-section">
+          <button type="button" id="reset-default-btn" class="btn btn-danger-ghost btn-sm">Auf kuratierte Startliste zurücksetzen</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Schnell-Entscheid Modal -->
+  <dialog id="quick-dialog" class="sheet-dialog" aria-labelledby="quick-dialog-title">
+    <div class="sheet-card">
+      <div class="sheet-header">
+        <div>
+          <span class="sheet-eyebrow">2-Fragen-Assistent</span>
+          <h2 id="quick-dialog-title" class="sheet-title">Schnell-Entscheid · Top 3</h2>
+        </div>
+        <button type="button" class="icon-btn dialog-close" data-close-dialog="quick-dialog" aria-label="Schließen">✕</button>
+      </div>
+      <div class="sheet-body">
+        <div class="quick-question">
+          <span class="field-label-text">1. Wie viel Zeit habt ihr?</span>
+          <div class="quick-pills" id="quick-time-pills" role="group" aria-label="Zeitrahmen">
+            <button type="button" class="chip-btn is-active" data-quick-time="any">Egal</button>
+            <button type="button" class="chip-btn" data-quick-time="short">&lt; 100 Min. / Serie</button>
+            <button type="button" class="chip-btn" data-quick-time="medium">Bis ~2 Std.</button>
+          </div>
+        </div>
+        <div class="quick-question">
+          <span class="field-label-text">2. Wonach ist euch?</span>
+          <div class="quick-pills" id="quick-vibe-pills" role="group" aria-label="Stimmung">
+            <button type="button" class="chip-btn is-active" data-quick-vibe="any">Überrascht mich</button>
+            <button type="button" class="chip-btn" data-quick-vibe="witzig-clever">Witzig &amp; clever</button>
+            <button type="button" class="chip-btn" data-quick-vibe="warmherzig">Warmherzig</button>
+            <button type="button" class="chip-btn" data-quick-vibe="packend-ernst">Etwas Spannung / Drama</button>
+          </div>
+        </div>
+        <label class="mood-check-pill quick-free-toggle">
+          <input type="checkbox" id="quick-free-only">
+          <span>Nur frei verfügbar (ARD Mediathek)</span>
+        </label>
+        <div class="quick-results-header">
+          <span id="quick-results-meta" class="muted-text"></span>
+        </div>
+        <div id="quick-results-list" class="quick-results-list"></div>
+      </div>
+      <div class="sheet-footer">
+        <button type="button" id="quick-reroll-btn" class="btn btn-secondary">↻ Andere 3 zeigen</button>
+        <button type="button" class="btn btn-primary" data-close-dialog="quick-dialog">Fertig</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Merken für heute (Shortlist-Vergleich) Modal -->
+  <dialog id="shortlist-dialog" class="sheet-dialog" aria-labelledby="shortlist-dialog-title">
+    <div class="sheet-card">
+      <div class="sheet-header">
+        <div>
+          <span class="sheet-eyebrow">Eure heutige Auswahl</span>
+          <h2 id="shortlist-dialog-title" class="sheet-title">Gemerkt für heute</h2>
+        </div>
+        <button type="button" class="icon-btn dialog-close" data-close-dialog="shortlist-dialog" aria-label="Schließen">✕</button>
+      </div>
+      <div id="shortlist-dialog-body" class="sheet-body"></div>
+      <div class="sheet-footer">
+        <button type="button" id="shortlist-dialog-clear-btn" class="btn btn-ghost">Leeren</button>
+        <div class="spacer"></div>
+        <button type="button" id="shortlist-random-btn" class="btn btn-accent">🎲 Aus Shortlist würfeln</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Geschmacksprofil Export Modal -->
+  <dialog id="profile-dialog" class="sheet-dialog" aria-labelledby="profile-dialog-title">
+    <div class="sheet-card">
+      <div class="sheet-header">
+        <div>
+          <span class="sheet-eyebrow">Für neue Filmideen</span>
+          <h2 id="profile-dialog-title" class="sheet-title">Euer Geschmacksprofil</h2>
+        </div>
+        <button type="button" class="icon-btn dialog-close" data-close-dialog="profile-dialog" aria-label="Schließen">✕</button>
+      </div>
+      <div class="sheet-body">
+        <p class="muted-text">Einfach kopieren und in einen Chat einfügen, um passende neue Vorschläge auf Deutsch zu bekommen:</p>
+        <textarea id="profile-export-text" class="text-input text-area profile-textarea" rows="10" readonly></textarea>
+      </div>
+      <div class="sheet-footer">
+        <button type="button" class="btn btn-ghost" data-close-dialog="profile-dialog">Schließen</button>
+        <button type="button" id="profile-copy-btn" class="btn btn-primary">📋 Text kopieren</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

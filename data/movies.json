@@ -1,0 +1,649 @@
+{
+  "version": 2,
+  "items": [
+    {
+      "id": "die-unglaubliche-geschichte-der-roseninsel-2020",
+      "title": "Die unglaubliche Geschichte der Roseninsel",
+      "originalTitle": "L'incredibile storia dell'Isola delle Rose",
+      "year": 2020,
+      "type": "film",
+      "runtimeMinutes": 117,
+      "runtimeLabel": "117 Min.",
+      "moods": [
+        "warmherzig",
+        "witzig-clever"
+      ],
+      "moodLabels": [
+        "Warmherzig",
+        "Witzig & clever"
+      ],
+      "fit": "high",
+      "fitReason": "Trifft euren Sweet Spot: wahre Geschichte mit viel Charme, Witz und Herz – nie platt und nie zu anstrengend.",
+      "summary": "Ein idealistischer italienischer Ingenieur baut 1968 vor der Küste Riminis eine eigene Plattform im Meer und ruft prompt eine unabhängige Republik aus. Eine wunderbar leichtfüßige, wahre Tragikomödie über Freiheitsdrang und Sturheit, die sofort gute Laune macht.",
+      "recommendedBy": "Arbeitskollegen",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=E2NDXkwbAJU",
+      "trailerNote": "Offizieller deutscher Netflix-Trailer",
+      "posterUrl": "./posters/die-unglaubliche-geschichte-der-roseninsel-2020.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "der-vorname-2012",
+      "title": "Der Vorname",
+      "originalTitle": "Le Prénom",
+      "year": 2012,
+      "type": "film",
+      "runtimeMinutes": 109,
+      "runtimeLabel": "109 Min.",
+      "moods": [
+        "witzig-clever"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Dialogstark"
+      ],
+      "fit": "high",
+      "fitReason": "Kluge französische Komödie mit messerscharfen Dialogen und überraschenden Wendungen.",
+      "summary": "Ein gemütliches Pariser Abendessen unter Freunden und Geschwistern eskaliert komplett, als der werdende Vater aus Spaß einen völlig provokanten Vornamen für seinen Sohn vorschlägt. Tempo, Wortwitz und entlarvende Familiengeheimnisse machen das Kammerspiel zu einem echten Vergnügen.",
+      "recommendedBy": "Arbeitskollegen",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=htT7BXWoBis",
+      "trailerNote": "Offizieller deutscher Trailer",
+      "posterUrl": "./posters/der-vorname-2012.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "logan-lucky-2017",
+      "title": "Logan Lucky",
+      "originalTitle": "Logan Lucky",
+      "year": 2017,
+      "type": "film",
+      "runtimeMinutes": 119,
+      "runtimeLabel": "119 Min.",
+      "moods": [
+        "witzig-clever"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Locker"
+      ],
+      "fit": "high",
+      "fitReason": "Clevere Gaunerkomödie mit trockenem Humor, liebenswerten Figuren und angenehmem Erzähltempo.",
+      "summary": "Zwei vom Pech verfolgte Brüder planen mitten während eines riesigen NASCAR-Rennens einen ausgefuchsten Tresor-Coup – mit einem herrlich schrägen Sprengstoffexperten im Schlepptau. Locker, selbstironisch und spannend, ohne je verwirrend zu werden.",
+      "recommendedBy": "Arbeitskollegen",
+      "recommendationNote": "Notiert als „lone lucky“",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=ulIrqV_lB3Y",
+      "trailerNote": "Offizieller deutscher Trailer (STUDIOCANAL)",
+      "posterUrl": "./posters/logan-lucky-2017.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "die-verurteilten-1994",
+      "title": "Die Verurteilten",
+      "originalTitle": "The Shawshank Redemption",
+      "year": 1994,
+      "type": "film",
+      "runtimeMinutes": 142,
+      "runtimeLabel": "142 Min.",
+      "moods": [
+        "warmherzig",
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Warmherzig",
+        "Packend & ernst"
+      ],
+      "fit": "high",
+      "fitReason": "Großes, tief bewegendes Drama über Freundschaft und Hoffnung – klar erzählt und absolut zeitlos (etwas länger: 2h 22m).",
+      "summary": "Ein zu Unrecht verurteilter Bankmanager schließt im Gefängnis von Shawshank über Jahrzehnte hinweg eine tiefe Freundschaft mit seinem Mitgefangenen Red. Trotz rauer Gefängniskulisse ein zutiefst menschlicher, hoffnungsvoller Klassiker mit starkem Finale.",
+      "recommendedBy": "Arbeitskollegen",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=XKGIAm6468o",
+      "trailerNote": "Deutscher HD-Trailer",
+      "posterUrl": "./posters/die-verurteilten-1994.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "der-perfekte-chef-2021",
+      "title": "Der perfekte Chef",
+      "originalTitle": "El buen patrón",
+      "year": 2021,
+      "type": "film",
+      "runtimeMinutes": 120,
+      "runtimeLabel": "120 Min.",
+      "moods": [
+        "witzig-clever"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Bissig"
+      ],
+      "fit": "high",
+      "fitReason": "Ausgezeichnete spanische Satire: bissig, feinsinnig und von Javier Bardem grandios getragen.",
+      "summary": "Ein charismatischer Waagenfabrik-Besitzer gibt sich als gütiger Familienvater der Belegschaft – bis kurz vor einem wichtigen Wirtschaftspreis alles gleichzeitig aus dem Ruder läuft. Beim Versuch, jedes Problem glattzubügeln, reitet er sich mit schwarzem Humor immer tiefer hinein.",
+      "recommendedBy": "Selbst notiert",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=gfwXOhXxiWI",
+      "trailerNote": "Offizieller deutscher Trailer",
+      "posterUrl": "./posters/der-perfekte-chef-2021.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "und-wer-nimmt-den-hund-2019",
+      "title": "Und wer nimmt den Hund?",
+      "originalTitle": "Und wer nimmt den Hund?",
+      "year": 2019,
+      "type": "film",
+      "runtimeMinutes": 89,
+      "runtimeLabel": "89 Min.",
+      "moods": [
+        "witzig-clever",
+        "warmherzig"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Warmherzig"
+      ],
+      "fit": "high",
+      "fitReason": "Kompakte 89 Minuten, lebensnah, klug beobachtet und stark gespielt (Martina Gedeck & Ulrich Tukur).",
+      "summary": "Nach 25 Jahren Ehe wollen Doris und Georg ihre Trennung besonders zivilisiert per Therapie abwickeln – doch unter der höflichen Fassade brechen verletzter Stolz, neue Freiheiten und unerwartete Gefühle auf. Eine erwachsene, pointierte Beziehungskomödie ohne Kitsch.",
+      "recommendedBy": "Mutter (ARD Mediathek)",
+      "recommendationNote": "",
+      "freeSource": "ARD Mediathek",
+      "trailerUrl": "https://www.youtube.com/watch?v=1Y8N2m_E19o",
+      "trailerNote": "Offizieller deutscher Trailer",
+      "posterUrl": "./posters/und-wer-nimmt-den-hund-2019.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "ungeschminkt-2024",
+      "title": "Ungeschminkt",
+      "originalTitle": "Ungeschminkt",
+      "year": 2024,
+      "type": "film",
+      "runtimeMinutes": 89,
+      "runtimeLabel": "89 Min.",
+      "moods": [
+        "warmherzig",
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Warmherzig",
+        "Packend & ernst"
+      ],
+      "fit": "high",
+      "fitReason": "Feinfühlige, würdevolle Dramedy mit großer Wärme und einer herausragenden Adele Neuhauser.",
+      "summary": "Vor über 35 Jahren brach Josefa mit ihrem bayerischen Heimatdorf, um fortan offen als Frau zu leben. Nach dem Tod ihrer Mutter kehrt sie als Alleinerbin zurück und begegnet alten Wunden, ihrer Ex-Frau und ehemaligen Freunden mit erstaunlich viel Empathie und trockenem Humor.",
+      "recommendedBy": "Mutter (ARD Mediathek)",
+      "recommendationNote": "",
+      "freeSource": "ARD Mediathek",
+      "trailerUrl": "https://www.youtube.com/watch?v=XwL2BoqAdMs",
+      "trailerNote": "Offizieller Trailer (Filmfest München)",
+      "posterUrl": "./posters/ungeschminkt-2024.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "marcel-the-shell-with-shoes-on-2021",
+      "title": "Marcel the Shell with Shoes On",
+      "originalTitle": "Marcel the Shell with Shoes On",
+      "year": 2021,
+      "type": "film",
+      "runtimeMinutes": 90,
+      "runtimeLabel": "90 Min.",
+      "moods": [
+        "warmherzig",
+        "witzig-clever"
+      ],
+      "moodLabels": [
+        "Warmherzig",
+        "Witzig & clever"
+      ],
+      "fit": "high",
+      "fitReason": "Zwar mit sprechender Mini-Muschel, aber geerdet, feinsinnig und herzerwärmend wie eine kleine Indie-Doku – kein klassisches Fantasy.",
+      "summary": "Ein Dokumentarfilmer zieht in ein Airbnb und entdeckt dort Marcel, eine winzige Muschel mit Mini-Schuhen und Großmutter im Gepäck. Mit leisen, philosophischen Gesprächen und unerwartetem Internetruhm versucht Marcel, seine verlorene Familie wiederzufinden.",
+      "recommendedBy": "Arbeitskollegen",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=c3vZIcOtyYY",
+      "trailerNote": "Originaltrailer (engl.) mit deutscher Info – keine deutsche Synchron-Vorschau auf YouTube",
+      "posterUrl": "./posters/marcel-the-shell-with-shoes-on-2021.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "empatia-2017",
+      "title": "Empatía",
+      "originalTitle": "Empatía",
+      "year": 2017,
+      "type": "doc",
+      "runtimeMinutes": 75,
+      "runtimeLabel": "75 Min.",
+      "moods": [
+        "warmherzig"
+      ],
+      "moodLabels": [
+        "Warmherzig",
+        "Nachdenklich"
+      ],
+      "fit": "high",
+      "fitReason": "Kurzweilige 75-Minuten-Doku, die statt mit erhobenem Zeigefinger sehr persönlich und selbstironisch argumentiert.",
+      "summary": "Regisseur Ed Antoja soll einen Film über vegane Lebensweise und Tierschutz drehen – doch er selbst mag Schinken und steht dem Thema völlig skeptisch gegenüber. Auf seiner sehr persönlichen Recherchereise hinterfragt er Alltag, Konsum und eigene Gewohnheiten mit Humor und Ehrlichkeit.",
+      "recommendedBy": "Selbst notiert",
+      "recommendationNote": "Doku über vegane Ernährung",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=T8y9euAQ8Sw",
+      "trailerNote": "Offizieller Originaltrailer (span./engl.) – keine deutsche Synchronfassung auf YouTube",
+      "posterUrl": "./posters/empatia-2017.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "monsieur-claude-und-seine-toechter-2014",
+      "title": "Monsieur Claude und seine Töchter",
+      "originalTitle": "Qu'est-ce qu'on a fait au Bon Dieu?",
+      "year": 2014,
+      "type": "film",
+      "runtimeMinutes": 97,
+      "runtimeLabel": "97 Min.",
+      "moods": [
+        "witzig-clever",
+        "warmherzig"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Warmherzig"
+      ],
+      "fit": "medium",
+      "fitReason": "Spritzig und leicht für müde Abende, aber stellenweise recht vorhersehbar und mit klassischem Klischee-Humor.",
+      "summary": "Das erzkonservative französische Ehepaar Verneuil hat sich längst damit abgefunden, dass drei ihrer vier Töchter Männer anderer Religionen und Herkunft geheiratet haben. Als die jüngste Tochter endlich einen Katholiken ankündigt, kommt es natürlich ganz anders als erhofft.",
+      "recommendedBy": "Arbeitskollegen",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=MPYgfmNbXF8",
+      "trailerNote": "Offizieller deutscher Kinotrailer",
+      "posterUrl": "./posters/monsieur-claude-und-seine-toechter-2014.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "die-discounter-2021",
+      "title": "Die Discounter",
+      "originalTitle": "Die Discounter",
+      "year": 2021,
+      "type": "series",
+      "runtimeMinutes": 20,
+      "runtimeLabel": "4 Staffeln · ~20 Min./Folge",
+      "moods": [
+        "witzig-clever"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Kurzweilig"
+      ],
+      "fit": "medium",
+      "fitReason": "Perfekt für sehr kurze Abende, allerdings bewusster Fremdscham-Humor im Stil von „Stromberg“ bzw. „The Office“.",
+      "summary": "Im Hamburger Supermarkt „Feinkost Kolinski“ herrscht unter dem völlig überforderten Filialleiter Thorsten das tägliche Chaos zwischen Kasse, Tiefkühltruhe und Beziehungsdramen. Improvisierte Mockumentary mit schnellen 20-Minuten-Folgen zum Wegschauen.",
+      "recommendedBy": "Selbst notiert",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=3fg9giQB094",
+      "trailerNote": "Deutscher Serientrailer (Staffel 1)",
+      "posterUrl": "./posters/die-discounter-2021.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "sherlock-2010",
+      "title": "Sherlock",
+      "originalTitle": "Sherlock",
+      "year": 2010,
+      "type": "series",
+      "runtimeMinutes": 90,
+      "runtimeLabel": "4 Staffeln · ~90 Min./Folge",
+      "moods": [
+        "witzig-clever",
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Packend & ernst"
+      ],
+      "fit": "medium",
+      "fitReason": "Brillant gespielt und sehr witzig zwischen Holmes & Watson; einzelne Folgen sind aber rasant geschnitten und teils vertrackt.",
+      "summary": "Sherlock Holmes und Dr. John Watson lösen im modernen London mit Smartphones, messerscharfem Verstand und trockenem britischen Humor rätselhafte Kriminalfälle. Jede Episode hat volle Spielfilmlänge (3 Folgen pro Staffel) und funktioniert wie ein eigener Krimiabend.",
+      "recommendedBy": "Selbst notiert",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=uTG9Bz9g144",
+      "trailerNote": "Deutscher Trailer zu Staffel 1",
+      "posterUrl": "./posters/sherlock-2010.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "wild-tales-2014",
+      "title": "Wild Tales – Jeder dreht mal durch!",
+      "originalTitle": "Relatos salvajes",
+      "year": 2014,
+      "type": "film",
+      "runtimeMinutes": 122,
+      "runtimeLabel": "122 Min.",
+      "moods": [
+        "witzig-clever",
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Rabenschwarz"
+      ],
+      "fit": "medium",
+      "fitReason": "Hochgelobte, clevere Satire in 6 kurzen Episoden – aber stellenweise sehr rabenschwarz, laut und mit Gewaltspitzen.",
+      "summary": "Sechs eigenständige Kurzgeschichten zeigen normale Menschen, die durch Bürokratie, Betrug oder Arroganz im Alltag komplett die Beherrschung verlieren. Eine extrem unterhaltsame, bissige Rache-Anthologie aus Argentinien, bei der man nie weiß, wie weit die nächste Episode geht.",
+      "recommendedBy": "Arbeitskollegen",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=gWOJgkkQbOo",
+      "trailerNote": "Offizieller deutscher Trailer",
+      "posterUrl": "./posters/wild-tales-2014.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "the-gentlemen-2019",
+      "title": "The Gentlemen",
+      "originalTitle": "The Gentlemen",
+      "year": 2019,
+      "type": "film",
+      "runtimeMinutes": 113,
+      "runtimeLabel": "113 Min.",
+      "moods": [
+        "witzig-clever",
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Temporeich"
+      ],
+      "fit": "medium",
+      "fitReason": "Sehr witzige Dialoge und stilvolles Ensemble, aber recht viele Zeitsprünge und typische Gangster-Gewalt.",
+      "summary": "Ein US-amerikanischer Cannabis-Tycoon in London will sein Imperium verkaufen – woraufhin rivalisierende Gauner, ein schmieriger Privatdetektiv und ein Boxtrainer ein aberwitziges Intrigen-Karussell starten. Cool, dialogverliebt und spitzbübisch im besten Guy-Ritchie-Stil.",
+      "recommendedBy": "Arbeitskollegen",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=7Mb1mtOmFPA",
+      "trailerNote": "Offizieller deutscher Trailer (LEONINE)",
+      "posterUrl": "./posters/the-gentlemen-2019.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "departed-unter-feinden-2006",
+      "title": "Departed – Unter Feinden",
+      "originalTitle": "The Departed",
+      "year": 2006,
+      "type": "film",
+      "runtimeMinutes": 151,
+      "runtimeLabel": "151 Min.",
+      "moods": [
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Packend & ernst"
+      ],
+      "fit": "medium",
+      "fitReason": "Starkes Scorsese-Meisterwerk, aber mit 2,5 Stunden sehr lang, handlungsdicht und ziemlich brutal.",
+      "summary": "In Boston schleust die Polizei einen jungen Undercover-Ermittler in die irische Mafia ein – während die Mafia gleichzeitig ihren eigenen Maulwurf bei der Polizei platziert. Ein nervenzerreißendes Katz-und-Maus-Spiel mit Leonardo DiCaprio, Matt Damon und Jack Nicholson.",
+      "recommendedBy": "Arbeitskollegen",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=sZwc4lh_984",
+      "trailerNote": "Deutscher Trailer",
+      "posterUrl": "./posters/departed-unter-feinden-2006.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "jungle-2017",
+      "title": "Jungle",
+      "originalTitle": "Jungle",
+      "year": 2017,
+      "type": "film",
+      "runtimeMinutes": 115,
+      "runtimeLabel": "115 Min.",
+      "moods": [
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Packend & ernst"
+      ],
+      "fit": "medium",
+      "fitReason": "Packende wahre Geschichte mit starkem Daniel Radcliffe, aber ein körperlich harter, anstrengender Überlebenskampf.",
+      "summary": "1981 bricht der junge Abenteurer Yossi mit zwei Freunden und einem geheimnisvollen Führer in den unberührten bolivianischen Amazonas auf. Nach einem Unglück wird er allein im Regenwald abgetrieben und kämpft drei Wochen lang ums nackte Überleben.",
+      "recommendedBy": "Selbst notiert",
+      "recommendationNote": "Notiert als „La Jungla“",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=N4D8Sr7mERg",
+      "trailerNote": "Deutscher Trailer",
+      "posterUrl": "./posters/jungle-2017.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "eine-frage-der-wuerde-2023",
+      "title": "Eine Frage der Würde",
+      "originalTitle": "Уроците на Блага (Blaga's Lessons)",
+      "year": 2023,
+      "type": "film",
+      "runtimeMinutes": 114,
+      "runtimeLabel": "114 Min.",
+      "moods": [
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Packend & ernst"
+      ],
+      "fit": "medium",
+      "fitReason": "Preisgekröntes, extrem starkes Sozialdrama – allerdings emotional ziemlich bedrückend und moralisch finster.",
+      "summary": "Die 70-jährige pensionierte Lehrerin Blaga will für sich und ihren verstorbenen Mann ein würdiges Grab kaufen, verliert aber all ihre Ersparnisse an dreiste Telefonbetrüger. Verzweifelt und ohne Hilfe beginnt sie, ihre eigenen moralischen Prinzipien über Bord zu werfen.",
+      "recommendedBy": "Mutter (ARD Mediathek)",
+      "recommendationNote": "Vermerk der Mutter: sehr gut",
+      "freeSource": "ARD Mediathek",
+      "trailerUrl": "https://www.youtube.com/watch?v=SYepk_u9WCY",
+      "trailerNote": "Offizieller deutscher Trailer",
+      "posterUrl": "./posters/eine-frage-der-wuerde-2023.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "die-kinder-der-villa-emma-2016",
+      "title": "Die Kinder der Villa Emma",
+      "originalTitle": "Die Kinder der Villa Emma",
+      "year": 2016,
+      "type": "film",
+      "runtimeMinutes": 95,
+      "runtimeLabel": "ca. 95 Min.",
+      "moods": [
+        "packend-ernst",
+        "warmherzig"
+      ],
+      "moodLabels": [
+        "Packend & ernst",
+        "Warmherzig"
+      ],
+      "fit": "medium",
+      "fitReason": "Berührendes, hoffnungsvolles historisches Drama nach wahrer Geschichte – thematisch (NS-Verfolgung) aber natürlich ernst.",
+      "summary": "Eine Gruppe jüdischer Kinder und Jugendlicher flieht 1941 aus Wien über Jugoslawien und findet in einer norditalienischen Villa Schutz. Als auch dort Gefahr droht, beweist die mutige Dorfgemeinschaft beeindruckende Solidarität.",
+      "recommendedBy": "Mutter (ARD Mediathek)",
+      "recommendationNote": "",
+      "freeSource": "ARD Mediathek",
+      "trailerUrl": "https://www.youtube.com/watch?v=6CaiGd3XF7U",
+      "trailerNote": "Kurze Video-Vorschau auf YouTube",
+      "posterUrl": "./posters/die-kinder-der-villa-emma-2016.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "martha-liebermann-ein-gestohlenes-leben-2022",
+      "title": "Martha Liebermann – Ein gestohlenes Leben",
+      "originalTitle": "Martha Liebermann – Ein gestohlenes Leben",
+      "year": 2022,
+      "type": "film",
+      "runtimeMinutes": 89,
+      "runtimeLabel": "89 Min.",
+      "moods": [
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Packend & ernst"
+      ],
+      "fit": "medium",
+      "fitReason": "Kompakt und brillant von Thekla Carola Wied gespielt, aber ein ernstes, tragisches Berlin-1943-Drama.",
+      "summary": "Berlin 1943: Die 85-jährige Martha Liebermann, jüdische Witwe des berühmten Malers Max Liebermann, steht vor der drohenden Deportation. Während eine Widerstandsgruppe ihre Flucht in die Schweiz plant, rückt die Gestapo immer näher.",
+      "recommendedBy": "Mutter (ARD Mediathek)",
+      "recommendationNote": "",
+      "freeSource": "ARD Mediathek",
+      "trailerUrl": "https://www.youtube.com/watch?v=PjDm5JtdWHI",
+      "trailerNote": "Offizieller Trailer (Filmfest Hamburg)",
+      "posterUrl": "./posters/martha-liebermann-ein-gestohlenes-leben-2022.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "die-letzte-reise-2016",
+      "title": "Die letzte Reise",
+      "originalTitle": "Die letzte Reise",
+      "year": 2016,
+      "type": "film",
+      "runtimeMinutes": 89,
+      "runtimeLabel": "89 Min.",
+      "moods": [
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Packend & ernst",
+        "Nachdenklich"
+      ],
+      "fit": "medium",
+      "fitReason": "Starkes, einfühlsames Kammerspiel – behandelt aber direkt die Themen Alter, Krankheit und Sterbehilfe.",
+      "summary": "Eine willensstarke 76-jährige Lehrerin will nicht zum Pflegefall werden und meldet sich bei einem Schweizer Sterbehilfe-Verein an. Ihre beiden Töchter geraten darüber in einen tiefen moralischen Konflikt – bis eine von ihnen sogar vor Gericht zieht, um ihre Mutter aufzuhalten.",
+      "recommendedBy": "Mutter (ARD Mediathek)",
+      "recommendationNote": "ARD-Drama (2016) mit Christiane Hörbiger – falls die schwedische Roadtrip-Doku „Eine letzte Reise“ (2024) gemeint war, einfach über ✎ anpassen.",
+      "freeSource": "ARD Mediathek",
+      "trailerUrl": "https://www.youtube.com/watch?v=DZhlmICZXIA",
+      "trailerNote": "YouTube-Video zum ARD-Film (2016)",
+      "posterUrl": "./posters/die-letzte-reise-2016.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "pans-labyrinth-2006",
+      "title": "Pans Labyrinth",
+      "originalTitle": "El laberinto del fauno",
+      "year": 2006,
+      "type": "film",
+      "runtimeMinutes": 119,
+      "runtimeLabel": "119 Min.",
+      "moods": [
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Packend & ernst",
+        "Düster"
+      ],
+      "fit": "low",
+      "fitReason": "Trifft klare No-Gos deiner Freundin: ausgeprägte Dark Fantasy mit verstörenden Horror- und expliziten Gewaltszenen.",
+      "summary": "Im Spanien des Jahres 1944 flüchtet ein junges Mädchen vor ihrem grausamen Stiefvater in eine düstere, fantastische Parallelwelt voller Prüfungen und unheimlicher Kreaturen. Künstlerisch herausragend, aber sehr blutig und klar im Dark-Fantasy-/Horror-Bereich.",
+      "recommendedBy": "Arbeitskollegen",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=nxDKN4wwo5k",
+      "trailerNote": "Offizieller deutscher Trailer (LEONINE)",
+      "posterUrl": "./posters/pans-labyrinth-2006.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "der-schacht-2019",
+      "title": "Der Schacht",
+      "originalTitle": "El hoyo (The Platform)",
+      "year": 2019,
+      "type": "film",
+      "runtimeMinutes": 94,
+      "runtimeLabel": "94 Min.",
+      "moods": [
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Packend & ernst",
+        "Beklemmend"
+      ],
+      "fit": "low",
+      "fitReason": "Trifft gleich zwei No-Gos deiner Freundin: dystopischer Sci-Fi-Horror mit expliziter Gewalt und Ekel-Szenen.",
+      "summary": "In einem turmartigen Zukunftsgefängnis fährt täglich eine gedeckte Essensplattform von oben nach unten: Wer oben wohnt, schwelgt – wer unten landet, hungert. Beklemmende Gesellschaftsallegorie, die schnell in extremen Survival-Horror umschlägt.",
+      "recommendedBy": "Arbeitskollegen",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=y7ew2OXPQK0",
+      "trailerNote": "Deutscher Trailer HD",
+      "posterUrl": "./posters/der-schacht-2019.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    }
+  ]
+}

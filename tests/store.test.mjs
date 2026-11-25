@@ -10,7 +10,9 @@ import {
   computeTabCounts,
   deleteItem,
   filterItems,
+  formatRating,
   getQuickDecisionMatches,
+  isValidHalfStepRating,
   markWatched,
   pickRandomItem,
   promoteIdeaToPersonal,
@@ -129,20 +131,32 @@ test("CRUD, gemeinsame Bewertung und Zufallsvorschlag funktionieren zuverlässig
   const picked = pickRandomItem(added, "film-a-2020", () => 0);
   assert.equal(picked.id, filmB.id);
 
-  // Gemeinsame Bewertung
+  // Gemeinsame Bewertung (0,5er-Schritte + Paar-Balance)
+  assert.equal(isValidHalfStepRating(3.5), true);
+  assert.equal(isValidHalfStepRating(4.5), true);
+  assert.equal(isValidHalfStepRating(3.3), false);
+  assert.equal(isValidHalfStepRating(5.5), false);
+  assert.equal(formatRating(4.5), "4,5");
+  assert.equal(formatRating(3), "3,0");
+
+  assert.throws(() => markWatched(added, filmB.id, { jointRating: 3.3 }));
+
   const watched = markWatched(added, filmB.id, {
-    jointRating: 5,
+    jointRating: 4.5,
+    jointBalance: "mine",
     jointNote: "Beide sehr gelacht!",
     watchedAt: "2026-11-24T20:00:00.000Z"
   });
   const watchedTab = filterItems(watched, { tab: "watched" });
   assert.equal(watchedTab.length, 1);
-  assert.equal(watchedTab[0].jointRating, 5);
+  assert.equal(watchedTab[0].jointRating, 4.5);
+  assert.equal(watchedTab[0].jointBalance, "mine");
   assert.equal(watchedTab[0].jointNote, "Beide sehr gelacht!");
 
   // Zurücksetzen auf Offen
   const unwatched = unmarkWatched(watched, filmB.id);
   assert.equal(filterItems(unwatched, { tab: "watched" }).length, 0);
+  assert.equal(unwatched.find((i) => i.id === filmB.id).jointBalance, null);
 
   // Entfernen
   const removed = deleteItem(unwatched, filmB.id);
@@ -254,12 +268,14 @@ test("Shortlist, Schnell-Entscheid und Geschmacksprofil-Export arbeiten korrekt"
     quickFree.top.map((i) => i.id)
   );
 
-  // Geschmacksprofil-Export mit echten gesehenen Daten
+  // Geschmacksprofil-Export mit echten gesehenen Daten (0,5er-Skala + Balance)
   const profile = buildTasteProfileText(data.items);
   assert.ok(profile.includes("auf Deutsch"));
-  assert.ok(profile.includes("Ungeschminkt"));
-  assert.ok(profile.includes("Guter Film!"));
-  assert.ok(profile.includes("CODA"));
+  assert.ok(profile.includes("Ungeschminkt (2024) – 4,5/5"));
+  assert.ok(profile.includes("Sehr guter Film!"));
+  assert.ok(profile.includes("Avatar Aang: Der Herr der Elemente (2026) – 3,5/5 (Eher für mich)"));
+  assert.ok(profile.includes("Tenor: Eine Stimme – Zwei Welten (2022) – 2,5/5"));
+  assert.ok(profile.includes("CODA (2021) – 2,0/5 (Eher für mich)"));
   assert.ok(profile.includes("USA-klischeehaft"));
   assert.ok(profile.includes("Pans Labyrinth"));
 });

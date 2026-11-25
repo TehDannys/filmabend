@@ -140,7 +140,12 @@
       </div>
       <div class="sheet-body">
         <p class="rate-movie-name" id="rate-movie-name"></p>
-        <div class="verdict-list" id="verdict-options" role="radiogroup" aria-label="Gemeinsame Bewertung"></div>
+        <div class="verdict-preview" id="verdict-preview" aria-live="polite"></div>
+        <div class="rating-grid" id="verdict-options" role="radiogroup" aria-label="Gemeinsame Bewertung"></div>
+        <fieldset class="field-fieldset">
+          <legend class="field-label-text">Wie war die Balance?</legend>
+          <div class="balance-pills" id="verdict-balance-options" role="radiogroup" aria-label="Paar-Balance"></div>
+        </fieldset>
         <label class="field-label" for="rate-note-input">
           Unser kurzes Fazit (optional, 1 Satz)
           <input type="text" id="rate-note-input" class="text-input" maxlength="180" placeholder="z. B. Tolle Dialoge, genau unser Tempo am Freitagabend">

@@ -33,13 +33,15 @@ import {
   saveTheme
 } from "./store.js";
 import {
+  renderBalanceOptions,
   renderCard,
   renderCardsGrid,
   renderMoodCheckboxes,
   renderQuickChips,
   renderQuickResultCards,
   renderRecommenderOptions,
-  renderVerdictOptions
+  renderVerdictOptions,
+  renderVerdictPreview
 } from "./ui.js";
 
 const state = {
@@ -99,7 +101,9 @@ const els = {
   rateDialog: document.getElementById("rate-dialog"),
   rateForm: document.getElementById("rate-form"),
   rateMovieName: document.getElementById("rate-movie-name"),
+  verdictPreview: document.getElementById("verdict-preview"),
   verdictOptions: document.getElementById("verdict-options"),
+  verdictBalanceOptions: document.getElementById("verdict-balance-options"),
   rateNoteInput: document.getElementById("rate-note-input"),
 
   editDialog: document.getElementById("edit-dialog"),
@@ -362,7 +366,11 @@ function openRateDialog(id) {
   if (!item) return;
   state.ratingTargetId = id;
   els.rateMovieName.textContent = item.title;
-  renderVerdictOptions(els.verdictOptions, item.jointRating || 4);
+  const initialRating = item.jointRating ?? 3.5;
+  const initialBalance = item.jointBalance || "both";
+  renderVerdictPreview(els.verdictPreview, initialRating);
+  renderVerdictOptions(els.verdictOptions, initialRating);
+  renderBalanceOptions(els.verdictBalanceOptions, initialBalance);
   els.rateNoteInput.value = item.jointNote || "";
   els.rateDialog.showModal();
 }
@@ -598,7 +606,16 @@ function bindEvents() {
   els.verdictOptions.addEventListener("change", (e) => {
     const radio = e.target.closest('input[name="jointRating"]');
     if (!radio) return;
-    for (const label of els.verdictOptions.querySelectorAll(".verdict-option")) {
+    for (const label of els.verdictOptions.querySelectorAll(".rating-tile")) {
+      label.classList.toggle("is-selected", label.contains(radio));
+    }
+    renderVerdictPreview(els.verdictPreview, Number(radio.value));
+  });
+
+  els.verdictBalanceOptions.addEventListener("change", (e) => {
+    const radio = e.target.closest('input[name="jointBalance"]');
+    if (!radio) return;
+    for (const label of els.verdictBalanceOptions.querySelectorAll(".balance-pill")) {
       label.classList.toggle("is-selected", label.contains(radio));
     }
   });
@@ -607,8 +624,10 @@ function bindEvents() {
     e.preventDefault();
     const selected = els.rateForm.querySelector('input[name="jointRating"]:checked');
     if (!selected || !state.ratingTargetId) return;
+    const balanceEl = els.rateForm.querySelector('input[name="jointBalance"]:checked');
     state.data.items = markWatched(state.data.items, state.ratingTargetId, {
       jointRating: Number(selected.value),
+      jointBalance: balanceEl ? balanceEl.value : "both",
       jointNote: els.rateNoteInput.value
     });
     els.rateDialog.close();

@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "items": [
     {
       "id": "die-unglaubliche-geschichte-der-roseninsel-2020",
@@ -204,8 +204,9 @@
       "trailerNote": "Offizieller Trailer (Filmfest München)",
       "posterUrl": "./posters/ungeschminkt-2024.jpg",
       "watched": true,
-      "jointRating": 5,
-      "jointNote": "Guter Film!",
+      "jointRating": 4.5,
+      "jointBalance": "both",
+      "jointNote": "Sehr guter Film!",
       "watchedAt": "2026-11-24T20:00:00.000Z"
     },
     {
@@ -672,6 +673,7 @@
       "posterUrl": "./posters/die-unfassbaren-2013.jpg",
       "watched": true,
       "jointRating": 4,
+      "jointBalance": "both",
       "jointNote": "Schauen wir gerade – gefällt uns gut.",
       "watchedAt": "2026-11-25T16:00:00.000Z"
     },
@@ -702,6 +704,7 @@
       "posterUrl": "./posters/ich-sehe-was-was-du-nicht-siehst-2023.jpg",
       "watched": true,
       "jointRating": 4,
+      "jointBalance": "both",
       "jointNote": "Sehr cooler Film, schöne Szenengestaltung, besonders im Format. Die anderen 3 Kurzfilme der Serie nicht gut.",
       "watchedAt": "2026-11-23T20:00:00.000Z"
     },
@@ -731,6 +734,7 @@
       "posterUrl": "./posters/the-dawn-wall-2017.jpg",
       "watched": true,
       "jointRating": 4,
+      "jointBalance": "both",
       "jointNote": "Für eine Doku spannend gemacht.",
       "watchedAt": "2026-11-22T20:00:00.000Z"
     },
@@ -760,8 +764,9 @@
       "trailerNote": "Deutscher Trailer (OmU)",
       "posterUrl": "./posters/avatar-aang-der-herr-der-elemente-2026.jpg",
       "watched": true,
-      "jointRating": 4,
-      "jointNote": "",
+      "jointRating": 3.5,
+      "jointBalance": "mine",
+      "jointNote": "Gut – eher mein Film, aber auch ihr hat er gefallen.",
       "watchedAt": "2026-11-21T20:00:00.000Z"
     },
     {
@@ -789,8 +794,9 @@
       "trailerNote": "Offizieller deutscher Trailer (DCM)",
       "posterUrl": "./posters/perfect-days-2023.jpg",
       "watched": true,
-      "jointRating": 4,
-      "jointNote": "Cooler Film, mal was Entschleunigendes, anderes, aber zeitweise etwas langweilig.",
+      "jointRating": 3.5,
+      "jointBalance": "both",
+      "jointNote": "Für den Moment echt gut, mal was Entschleunigendes, anderes, aber zeitweise etwas langweilig.",
       "watchedAt": "2026-11-20T20:00:00.000Z"
     },
     {
@@ -820,6 +826,7 @@
       "posterUrl": "./posters/der-junge-der-den-wind-einfing-2019.jpg",
       "watched": true,
       "jointRating": 3,
+      "jointBalance": "both",
       "jointNote": "Nett, aber etwas vorhersehbar.",
       "watchedAt": "2026-11-19T20:00:00.000Z"
     },
@@ -848,6 +855,7 @@
       "posterUrl": "./posters/chantal-im-maerchenland-2024.jpg",
       "watched": true,
       "jointRating": 3,
+      "jointBalance": "both",
       "jointNote": "",
       "watchedAt": "2026-11-18T20:00:00.000Z"
     },
@@ -877,6 +885,7 @@
       "posterUrl": "./posters/johnny-english-man-lebt-nur-dreimal-2018.jpg",
       "watched": true,
       "jointRating": 3,
+      "jointBalance": "both",
       "jointNote": "Kurzweilig, unterhaltsam, mal ganz nett.",
       "watchedAt": "2026-11-17T20:00:00.000Z"
     },
@@ -905,9 +914,10 @@
       "trailerNote": "Offizieller deutscher Trailer (ARTHAUS)",
       "posterUrl": "./posters/tenor-eine-stimme-zwei-welten-2022.jpg",
       "watched": true,
-      "jointRating": 3,
+      "jointRating": 2.5,
+      "jointBalance": "both",
       "jointNote": "Thema gut, etwas vorhersehbar und wenig realistisch.",
-      "watchedAt": "2026-11-16T20:00:00.000Z"
+      "watchedAt": "2026-11-15T20:00:00.000Z"
     },
     {
       "id": "tenzing-2026",
@@ -935,8 +945,9 @@
       "posterUrl": "./posters/tenzing-2026.jpg",
       "watched": true,
       "jointRating": 3,
+      "jointBalance": "both",
       "jointNote": "Gut gemachter Film, mal was anderes, aber auch nicht sehr spannend.",
-      "watchedAt": "2026-11-15T20:00:00.000Z"
+      "watchedAt": "2026-11-16T20:00:00.000Z"
     },
     {
       "id": "coda-2021",
@@ -964,7 +975,8 @@
       "posterUrl": "./posters/coda-2021.jpg",
       "watched": true,
       "jointRating": 2,
-      "jointNote": "Gut gemachter Film, aber sehr USA-klischeehaft und vorhersehbar.",
+      "jointBalance": "mine",
+      "jointNote": "Gut gemachter Film, aber zusammen sehr USA-klischeehaft und vorhersehbar.",
       "watchedAt": "2026-11-14T20:00:00.000Z"
     },
     {

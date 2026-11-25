@@ -128,6 +128,7 @@ export async function loadInitialData() {
     const missingCurated = staticData.items.filter((i) => !localIds.has(i.id));
 
     if (needsUpgrade || missingCurated.length > 0) {
+      const applyV5Recalibration = (localData.version || 1) < 5 && (staticData.version || 1) >= 5;
       const updatedExisting = localData.items.map((item) => {
         if (!needsUpgrade) return item;
         const curated = staticById.get(item.id);
@@ -136,8 +137,13 @@ export async function loadInitialData() {
         if (!item.watched && curated.watched) {
           upgraded.watched = true;
           upgraded.jointRating = curated.jointRating;
+          upgraded.jointBalance = curated.jointBalance || "both";
           upgraded.jointNote = curated.jointNote;
           upgraded.watchedAt = curated.watchedAt;
+        } else if (applyV5Recalibration && item.watched && curated.watched) {
+          upgraded.jointRating = curated.jointRating;
+          upgraded.jointBalance = curated.jointBalance || "both";
+          upgraded.jointNote = curated.jointNote;
         }
         return upgraded;
       });

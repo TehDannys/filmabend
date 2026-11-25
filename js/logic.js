@@ -28,11 +28,21 @@ export const TYPE_LABELS = {
 };
 
 export const JOINT_VERDICTS = [
-  { rating: 5, hearts: "♥♥♥♥♥", label: "Beide begeistert – Volltreffer!" },
-  { rating: 4, hearts: "♥♥♥♥", label: "Sehr schöner gemeinsamer Abend" },
-  { rating: 3, hearts: "♥♥♥", label: "Ganz gut, hat gepasst" },
-  { rating: 2, hearts: "♥♥", label: "Eher durchwachsen für uns" },
-  { rating: 1, hearts: "♥", label: "War zusammen nichts für uns" }
+  { rating: 5, label: "Absoluter Volltreffer – besser geht’s kaum!" },
+  { rating: 4.5, label: "Herausragend – richtig starker Abend" },
+  { rating: 4, label: "Sehr schöner gemeinsamer Abend" },
+  { rating: 3.5, label: "Echt gut – passte super, kleine Abstriche" },
+  { rating: 3, label: "Solide & unterhaltsam – ganz nett" },
+  { rating: 2.5, label: "Geht so – gute Ansätze, spürbare Schwächen" },
+  { rating: 2, label: "Eher durchwachsen für uns zusammen" },
+  { rating: 1.5, label: "Ziemlich schwach für uns" },
+  { rating: 1, label: "War zusammen nichts für uns" }
+];
+
+export const JOINT_BALANCE_OPTIONS = [
+  { id: "both", label: "Beide ähnlich", shortLabel: "" },
+  { id: "mine", label: "Eher für mich", shortLabel: "Eher für mich" },
+  { id: "hers", label: "Eher für sie", shortLabel: "Eher für sie" }
 ];
 
 export const RECOMMENDERS = [
@@ -51,8 +61,27 @@ export function isExternalIdea(item) {
   return item?.sourceCategory === "external";
 }
 
+export function isValidHalfStepRating(value) {
+  const num = Number(value);
+  if (!Number.isFinite(num) || num < 1 || num > 5) return false;
+  return Math.abs(num * 2 - Math.round(num * 2)) < 1e-9;
+}
+
+export function formatRating(rating) {
+  const num = Number(rating);
+  if (!Number.isFinite(num)) return "";
+  return num.toFixed(1).replace(".", ",");
+}
+
 export function getVerdictMeta(rating) {
-  return JOINT_VERDICTS.find((v) => v.rating === Number(rating)) || null;
+  const num = Number(rating);
+  if (!Number.isFinite(num)) return null;
+  return JOINT_VERDICTS.find((v) => Math.abs(v.rating - num) < 1e-9) || null;
+}
+
+export function getBalanceMeta(balance) {
+  const key = balance || "both";
+  return JOINT_BALANCE_OPTIONS.find((b) => b.id === key) || JOINT_BALANCE_OPTIONS[0];
 }
 
 export function getUniqueRecommenders(items) {
@@ -264,7 +293,8 @@ export function upsertItem(items, payload) {
     trailerNote: String(payload.trailerNote || "").trim(),
     posterUrl: String(payload.posterUrl || "").trim(),
     watched: Boolean(payload.watched),
-    jointRating: payload.watched && payload.jointRating ? Number(payload.jointRating) : null,
+    jointRating: payload.watched && isValidHalfStepRating(payload.jointRating) ? Number(payload.jointRating) : null,
+    jointBalance: payload.watched ? getBalanceMeta(payload.jointBalance).id : null,
     jointNote: payload.watched ? String(payload.jointNote || "").trim() : "",
     watchedAt: payload.watched ? payload.watchedAt || new Date().toISOString() : null
   };
@@ -276,17 +306,23 @@ export function deleteItem(items, id) {
   return items.filter((item) => item.id !== id);
 }
 
-export function markWatched(items, id, { jointRating, jointNote = "", watchedAt = new Date().toISOString() } = {}) {
+export function markWatched(
+  items,
+  id,
+  { jointRating, jointBalance = "both", jointNote = "", watchedAt = new Date().toISOString() } = {}
+) {
   const ratingNum = Number(jointRating);
-  if (!Number.isInteger(ratingNum) || ratingNum < 1 || ratingNum > 5) {
-    throw new Error("Bitte wählt eine gemeinsame Bewertung von 1 bis 5.");
+  if (!isValidHalfStepRating(ratingNum)) {
+    throw new Error("Bitte wählt eine gemeinsame Bewertung von 1,0 bis 5,0 in 0,5er-Schritten.");
   }
+  const cleanBalance = getBalanceMeta(jointBalance).id;
   return items.map((item) =>
     item.id === id
       ? {
           ...item,
           watched: true,
           jointRating: ratingNum,
+          jointBalance: cleanBalance,
           jointNote: String(jointNote || "").trim(),
           watchedAt
         }
@@ -301,6 +337,7 @@ export function unmarkWatched(items, id) {
           ...item,
           watched: false,
           jointRating: null,
+          jointBalance: null,
           jointNote: "",
           watchedAt: null
         }
@@ -323,6 +360,7 @@ export function validateDataset(data) {
   if (!data || typeof data !== "object" || !Array.isArray(data.items)) {
     throw new Error("Ungültiges Datenformat: 'items'-Array fehlt.");
   }
+  const validBalances = new Set(JOINT_BALANCE_OPTIONS.map((b) => b.id));
   const ids = new Set();
   for (const item of data.items) {
     if (!item || typeof item !== "object") {
@@ -343,6 +381,12 @@ export function validateDataset(data) {
     }
     if (!FIT_LEVELS[item.fit]) {
       throw new Error(`Ungültige Passung bei ${item.id}: ${item.fit}`);
+    }
+    if (item.jointRating !== null && item.jointRating !== undefined && !isValidHalfStepRating(item.jointRating)) {
+      throw new Error(`Ungültige Bewertung bei ${item.id}: ${item.jointRating}`);
+    }
+    if (item.jointBalance !== null && item.jointBalance !== undefined && item.jointBalance !== "" && !validBalances.has(item.jointBalance)) {
+      throw new Error(`Ungültige Paar-Balance bei ${item.id}: ${item.jointBalance}`);
     }
   }
   return true;
@@ -406,19 +450,29 @@ export function getQuickDecisionMatches(
 }
 
 export function buildTasteProfileText(items = []) {
-  const watched = sortItems(items.filter((i) => i.watched), "watched");
+  const watched = [...items.filter((i) => i.watched)].sort((a, b) => {
+    const rA = Number(a.jointRating) || 0;
+    const rB = Number(b.jointRating) || 0;
+    if (rB !== rA) return rB - rA;
+    const dateA = a.watchedAt ? Date.parse(a.watchedAt) : 0;
+    const dateB = b.watchedAt ? Date.parse(b.watchedAt) : 0;
+    if (dateB !== dateA) return dateB - dateA;
+    return (a.title || "").localeCompare(b.title || "", "de");
+  });
   const liked = watched.filter((i) => Number(i.jointRating) >= 4);
-  const okay = watched.filter((i) => Number(i.jointRating) === 3);
-  const disliked = watched.filter((i) => i.jointRating && Number(i.jointRating) <= 2);
+  const okay = watched.filter((i) => Number(i.jointRating) >= 3 && Number(i.jointRating) < 4);
+  const disliked = watched.filter((i) => i.jointRating && Number(i.jointRating) < 3);
   const openTitles = sortItems(items.filter((i) => !i.watched && i.fit !== "low" && !isExternalIdea(i)), "open");
   const ideaTitles = sortItems(items.filter((i) => !i.watched && i.fit !== "low" && isExternalIdea(i)), "ideas");
   const avoided = items.filter((i) => !i.watched && i.fit === "low");
 
   const formatWatchedLine = (item) => {
     const yearPart = item.year ? ` (${item.year})` : "";
-    const ratingPart = item.jointRating ? ` – ${item.jointRating}/5` : "";
+    const ratingPart = item.jointRating ? ` – ${formatRating(item.jointRating)}/5` : "";
+    const balanceMeta = getBalanceMeta(item.jointBalance);
+    const balancePart = balanceMeta && balanceMeta.shortLabel ? ` (${balanceMeta.shortLabel})` : "";
     const notePart = item.jointNote ? ` · Fazit: „${item.jointNote}“` : "";
-    return `- ${item.title}${yearPart}${ratingPart}${notePart}`;
+    return `- ${item.title}${yearPart}${ratingPart}${balancePart}${notePart}`;
   };
 
   const lines = [
@@ -435,17 +489,17 @@ export function buildTasteProfileText(items = []) {
   if (watched.length === 0) {
     lines.push("Gemeinsam gesehen & bewertet: Noch keine Einträge in der App markiert.", "");
   } else {
-    lines.push("Gemeinsam gesehen & bewertet:");
+    lines.push("Gemeinsam gesehen & bewertet (Skala 1,0–5,0 in 0,5er-Schritten):");
     if (liked.length > 0) {
-      lines.push("Hat uns sehr gut gefallen (4–5/5):");
+      lines.push("Highlights (4,0–5,0/5):");
       liked.forEach((i) => lines.push(formatWatchedLine(i)));
     }
     if (okay.length > 0) {
-      lines.push("War ganz okay (3/5):");
+      lines.push("Gut bis solide (3,0–3,5/5):");
       okay.forEach((i) => lines.push(formatWatchedLine(i)));
     }
     if (disliked.length > 0) {
-      lines.push("War zusammen nichts für uns (1–2/5):");
+      lines.push("Eher durchwachsen / schwach (1,0–2,5/5):");
       disliked.forEach((i) => lines.push(formatWatchedLine(i)));
     }
     lines.push("");

@@ -2,10 +2,13 @@
 
 import {
   FIT_LEVELS,
+  JOINT_BALANCE_OPTIONS,
   JOINT_VERDICTS,
   MOOD_OPTIONS,
   QUICK_FILTER_CHIPS,
   TYPE_LABELS,
+  formatRating,
+  getBalanceMeta,
   getVerdictMeta
 } from "./logic.js";
 
@@ -78,11 +81,34 @@ export function renderPosterMarkup(item) {
   `;
 }
 
+const HEART_FULL_PATH =
+  "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z";
+const HEART_HALF_PATH =
+  "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09V21.35z";
+
+export function renderRatingHeartsSvg(rating) {
+  const value = Math.max(0, Math.min(5, Number(rating) || 0));
+  const hearts = [];
+  for (let i = 1; i <= 5; i += 1) {
+    let fillMarkup = "";
+    if (value >= i) {
+      fillMarkup = `<path class="heart-fill" d="${HEART_FULL_PATH}"></path>`;
+    } else if (value >= i - 0.5) {
+      fillMarkup = `<path class="heart-fill" d="${HEART_HALF_PATH}"></path>`;
+    }
+    hearts.push(
+      `<svg class="heart-svg" viewBox="0 0 24 24" aria-hidden="true"><path class="heart-bg" d="${HEART_FULL_PATH}"></path>${fillMarkup}</svg>`
+    );
+  }
+  return `<span class="heart-meter" aria-label="${escapeHtml(formatRating(value))} von 5">${hearts.join("")}</span>`;
+}
+
 export function renderCard(item, { compactForModal = false, shortlistIds = [], inShortlistDialog = false } = {}) {
   const fit = FIT_LEVELS[item.fit] || FIT_LEVELS.medium;
   const fitClass = `badge-fit-${fit.id}`;
   const moods = Array.isArray(item.moodLabels) ? item.moodLabels : [];
   const verdict = item.watched ? getVerdictMeta(item.jointRating) : null;
+  const balanceMeta = item.watched ? getBalanceMeta(item.jointBalance) : null;
   const isPinned = shortlistIds.includes(item.id);
   const trailerUrl =
     item.trailerUrl && item.trailerUrl.trim()
@@ -94,12 +120,24 @@ export function renderCard(item, { compactForModal = false, shortlistIds = [], i
     item.originalTitle.trim() &&
     item.originalTitle.trim().toLowerCase() !== item.title.trim().toLowerCase();
 
+  const balanceBadgeHtml =
+    balanceMeta && balanceMeta.shortLabel
+      ? `<span class="badge badge-balance">${escapeHtml(balanceMeta.shortLabel)}</span>`
+      : "";
+
   const verdictBlock = item.watched
     ? `
       <div class="joint-verdict-box">
-        <span class="joint-verdict-eyebrow">Unser gemeinsames Urteil</span>
+        <div class="joint-verdict-top">
+          <span class="joint-verdict-eyebrow">Unser gemeinsames Urteil</span>
+          ${balanceBadgeHtml}
+        </div>
         <div class="joint-verdict-main">
-          ${verdict ? `${verdict.hearts} (${verdict.rating}/5) · ${escapeHtml(verdict.label)}` : "Gemeinsam gesehen"}
+          ${
+            verdict
+              ? `${renderRatingHeartsSvg(verdict.rating)} <span class="verdict-score">${escapeHtml(formatRating(verdict.rating))}/5</span> <span class="verdict-label-text">· ${escapeHtml(verdict.label)}</span>`
+              : "Gemeinsam gesehen"
+          }
         </div>
         ${item.jointNote ? `<div class="joint-verdict-note">„${escapeHtml(item.jointNote)}“</div>` : ""}
         ${item.watchedAt ? `<div class="joint-verdict-note">Geschaut am ${escapeHtml(formatDateDe(item.watchedAt))}</div>` : ""}
@@ -251,14 +289,38 @@ export function renderMoodCheckboxes(container, selectedMoods = []) {
   ).join("");
 }
 
-export function renderVerdictOptions(container, selectedRating = 4) {
+export function renderVerdictPreview(container, selectedRating = 3.5) {
+  const verdict = getVerdictMeta(selectedRating) || JOINT_VERDICTS[3];
+  container.innerHTML = `
+    <div class="verdict-preview-top">
+      ${renderRatingHeartsSvg(verdict.rating)}
+      <strong class="verdict-preview-score">${escapeHtml(formatRating(verdict.rating))} / 5</strong>
+    </div>
+    <div class="verdict-preview-label">${escapeHtml(verdict.label)}</div>
+  `;
+}
+
+export function renderVerdictOptions(container, selectedRating = 3.5) {
+  const target = Number(selectedRating);
   container.innerHTML = JOINT_VERDICTS.map((v) => {
-    const checked = Number(selectedRating) === v.rating;
+    const checked = Math.abs(target - v.rating) < 1e-9;
     return `
-      <label class="verdict-option ${checked ? "is-selected" : ""}">
+      <label class="rating-tile ${checked ? "is-selected" : ""}">
         <input type="radio" name="jointRating" value="${v.rating}" ${checked ? "checked" : ""}>
-        <span class="verdict-hearts" aria-hidden="true">${v.hearts}</span>
-        <span><strong>${v.rating}/5</strong> · ${escapeHtml(v.label)}</span>
+        <span>${escapeHtml(formatRating(v.rating))}</span>
+      </label>
+    `;
+  }).join("");
+}
+
+export function renderBalanceOptions(container, selectedBalance = "both") {
+  const activeId = getBalanceMeta(selectedBalance).id;
+  container.innerHTML = JOINT_BALANCE_OPTIONS.map((opt) => {
+    const checked = opt.id === activeId;
+    return `
+      <label class="balance-pill ${checked ? "is-selected" : ""}">
+        <input type="radio" name="jointBalance" value="${escapeHtml(opt.id)}" ${checked ? "checked" : ""}>
+        <span>${escapeHtml(opt.label)}</span>
       </label>
     `;
   }).join("");

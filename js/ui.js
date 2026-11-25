@@ -114,6 +114,11 @@ export function renderCard(item, { compactForModal = false, shortlistIds = [], i
         : `<button type="button" class="btn btn-secondary btn-pin ${isPinned ? "is-pinned" : ""}" data-action="pin" data-id="${escapeHtml(item.id)}" aria-pressed="${isPinned ? "true" : "false"}">${isPinned ? "📌 Gemerkt" : "📌 Merken"}</button>`
       : "";
 
+  const promoteButtonHtml =
+    !item.watched && !compactForModal && !inShortlistDialog && item.sourceCategory === "external"
+      ? `<button type="button" class="btn btn-secondary" data-action="promote" data-id="${escapeHtml(item.id)}" title="In unsere persönliche Offen-Liste übernehmen">+ Übernehmen</button>`
+      : "";
+
   const actionsHtml = compactForModal
     ? ""
     : `
@@ -122,6 +127,7 @@ export function renderCard(item, { compactForModal = false, shortlistIds = [], i
           ▶ Trailer (DE)
         </a>
         ${pinButtonHtml}
+        ${promoteButtonHtml}
         ${
           item.watched
             ? `<button type="button" class="btn btn-secondary" data-action="rate" data-id="${escapeHtml(item.id)}">✎ Urteil</button>
@@ -149,6 +155,7 @@ export function renderCard(item, { compactForModal = false, shortlistIds = [], i
           </div>
           <div class="badge-row">
             <span class="badge ${fitClass}">${escapeHtml(fit.shortLabel)}</span>
+            ${item.sourceCategory === "external" && !item.watched ? `<span class="badge badge-idea">✨ Idee</span>` : ""}
             ${item.freeSource ? `<span class="badge badge-free">${escapeHtml(item.freeSource)} · Frei</span>` : ""}
             ${moods.map((m) => `<span class="badge badge-mood">${escapeHtml(m)}</span>`).join("")}
           </div>
@@ -175,6 +182,8 @@ export function renderCardsGrid(container, items, tab, shortlistIds = []) {
     const message =
       tab === "watched"
         ? "Noch keine gemeinsamen Filme abgehakt. Sobald ihr einen geschaut habt, erscheint er hier mit eurem gemeinsamen Urteil."
+        : tab === "ideas"
+        ? "Keine externen oder KI-Ideen für diesen Filter."
         : tab === "avoid"
         ? "Keine unpassenden Titel im Filter."
         : "Keine Treffer für diesen Filter. Probiert einen anderen Stimmungs-Chip oder setzt die Filter zurück.";

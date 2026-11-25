@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "items": [
     {
       "id": "die-unglaubliche-geschichte-der-roseninsel-2020",
@@ -966,6 +966,222 @@
       "jointRating": 2,
       "jointNote": "Gut gemachter Film, aber sehr USA-klischeehaft und vorhersehbar.",
       "watchedAt": "2026-11-14T20:00:00.000Z"
+    },
+    {
+      "id": "grand-budapest-hotel-2014",
+      "title": "Grand Budapest Hotel",
+      "originalTitle": "The Grand Budapest Hotel",
+      "year": 2014,
+      "type": "film",
+      "runtimeMinutes": 100,
+      "runtimeLabel": "100 Min.",
+      "moods": [
+        "witzig-clever",
+        "warmherzig"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Originell"
+      ],
+      "fit": "high",
+      "fitReason": "Von Wes Anderson: dieselbe kreative Szenengestaltung wie bei „Ich sehe was, was du nicht siehst“, gepaart mit einer rasanten, herrlich witzigen Geschichte.",
+      "summary": "Im prachtvollen Grand Budapest Hotel der 1930er-Jahre geraten der charmante Concierge Gustave H. und sein treuer Lobbyboy Zero nach dem plötzlichen Tod einer reichen Gönnerin mitten in einen turbulenten Erbstreit rund um ein wertvolles Gemälde.",
+      "recommendedBy": "KI-Empfehlung",
+      "sourceCategory": "external",
+      "recommendationNote": "Abgeleitet aus eurer Begeisterung für Wes Andersons Szenengestaltung",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=7d28TPa0vrE",
+      "trailerNote": "Offizieller deutscher Trailer",
+      "posterUrl": "./posters/grand-budapest-hotel-2014.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "zwei-zu-eins-2024",
+      "title": "Zwei zu eins",
+      "originalTitle": "Zwei zu eins",
+      "year": 2024,
+      "type": "film",
+      "runtimeMinutes": 116,
+      "runtimeLabel": "116 Min.",
+      "moods": [
+        "witzig-clever",
+        "warmherzig"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Warmherzig"
+      ],
+      "fit": "high",
+      "fitReason": "Verbindet deutsche Bodenständigkeit (wie „Ungeschminkt“) mit spielerischem Heist-Spaß – klug, herzlich und null Hollywood-Klischee.",
+      "summary": "Sommer 1990 in einer ostdeutschen Kleinstadt: Drei Freunde (Sandra Hüller, Max Riemelt, Ronald Zehrfeld) entdecken in einem verlassenen Stollen Millionen ausgemusterter DDR-Mark und starten mit der halben Nachbarschaft ein gewitztes Umtausch-System vor der Währungsreform.",
+      "recommendedBy": "KI-Empfehlung",
+      "sourceCategory": "external",
+      "recommendationNote": "Authentische deutsche Sommerkomödie nach wahrer Begebenheit",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=rydEv8Ourio",
+      "trailerNote": "Offizieller deutscher Trailer",
+      "posterUrl": "./posters/zwei-zu-eins-2024.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "free-solo-2018",
+      "title": "Free Solo",
+      "originalTitle": "Free Solo",
+      "year": 2018,
+      "type": "doc",
+      "runtimeMinutes": 100,
+      "runtimeLabel": "100 Min.",
+      "moods": [
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Packend & ernst",
+        "Doku"
+      ],
+      "fit": "high",
+      "fitReason": "Direkter Volltreffer nach „The Dawn Wall“: menschlich faszinierend und spannender als mancher Thriller.",
+      "summary": "Die Oscar-prämierte Dokumentation begleitet den Ausnahmekletterer Alex Honnold bei der Vorbereitung auf sein gefährlichstes Ziel: die 900 Meter hohe Steilwand des El Capitan im Yosemite-Nationalpark völlig ohne Seil und Sicherung zu bezwingen.",
+      "recommendedBy": "KI-Empfehlung",
+      "sourceCategory": "external",
+      "recommendationNote": "Passend zu eurem guten Urteil bei „The Dawn Wall“",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=gH6p21VKkSA",
+      "trailerNote": "Offizieller deutscher Trailer (National Geographic)",
+      "posterUrl": "./posters/free-solo-2018.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "searching-for-sugar-man-2012",
+      "title": "Searching for Sugar Man",
+      "originalTitle": "Searching for Sugar Man",
+      "year": 2012,
+      "type": "doc",
+      "runtimeMinutes": 86,
+      "runtimeLabel": "86 Min.",
+      "moods": [
+        "warmherzig",
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Warmherzig",
+        "Kurzweilig"
+      ],
+      "fit": "high",
+      "fitReason": "Kompakte 86 Minuten und erzählt wie ein echter Detektiv-Krimi – null trocken, komplett überraschend.",
+      "summary": "Zwei Südafrikaner begeben sich auf die Suche nach dem geheimnisvollen US-Musiker Sixto Rodriguez, dessen Alben in den 1970ern in ihrer Heimat berühmter waren als Elvis – während er in den USA völlig unbekannt blieb und angeblich längst verstorben war.",
+      "recommendedBy": "KI-Empfehlung",
+      "sourceCategory": "external",
+      "recommendationNote": "Oscar-prämierte Doku mit Krimi-Spannung",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=9yegqEwDsUE",
+      "trailerNote": "Offizieller deutscher Trailer",
+      "posterUrl": "./posters/searching-for-sugar-man-2012.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "catch-me-if-you-can-2002",
+      "title": "Catch Me If You Can",
+      "originalTitle": "Catch Me If You Can",
+      "year": 2002,
+      "type": "film",
+      "runtimeMinutes": 141,
+      "runtimeLabel": "141 Min.",
+      "moods": [
+        "witzig-clever",
+        "warmherzig"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Temporeich"
+      ],
+      "fit": "high",
+      "fitReason": "Federleichte, wahre Hochstapler-Jagd voller Tricks und Spielwitz (wie „Die Unfassbaren“), aber warmherziger und bodenständiger.",
+      "summary": "Noch bevor er 19 wird, gibt sich der charmante Hochstapler Frank Abagnale Jr. (Leonardo DiCaprio) erfolgreich als Pilot, Arzt und Staatsanwalt aus und ergaunert Millionen – dicht auf den Fersen ein hartnäckiger FBI-Agent (Tom Hanks).",
+      "recommendedBy": "KI-Empfehlung",
+      "sourceCategory": "external",
+      "recommendationNote": "Passend zu „Die Unfassbaren“ (etwas länger: 141 Min.)",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=06tCXmcmtoM",
+      "trailerNote": "Deutscher Trailer",
+      "posterUrl": "./posters/catch-me-if-you-can-2002.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "inside-man-2006",
+      "title": "Inside Man",
+      "originalTitle": "Inside Man",
+      "year": 2006,
+      "type": "film",
+      "runtimeMinutes": 129,
+      "runtimeLabel": "129 Min.",
+      "moods": [
+        "witzig-clever",
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Packend & ernst"
+      ],
+      "fit": "medium",
+      "fitReason": "Raffinierter, angenehm unblutiger Bankraub-Krimi mit starkem Twist und trockenem Witz – spannend ohne düster zu werden.",
+      "summary": "Ein bis ins Detail durchgeplanter Banküberfall mitten in Manhattan entwickelt sich zum klugen Psychoduell zwischen einem schlagfertigen Verhandlungsführer (Denzel Washington) und dem geheimnisvollen Drahtzieher (Clive Owen).",
+      "recommendedBy": "KI-Empfehlung",
+      "sourceCategory": "external",
+      "recommendationNote": "Smarte Krimi-Spannung mit Twist",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=WugbSl228WY",
+      "trailerNote": "Deutscher Trailer",
+      "posterUrl": "./posters/inside-man-2006.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
+    },
+    {
+      "id": "der-rausch-2020",
+      "title": "Der Rausch",
+      "originalTitle": "Druk",
+      "year": 2020,
+      "type": "film",
+      "runtimeMinutes": 117,
+      "runtimeLabel": "117 Min.",
+      "moods": [
+        "witzig-clever",
+        "warmherzig"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Europäisch"
+      ],
+      "fit": "high",
+      "fitReason": "Gegenpol zu formelhaftem US-Kino wie „CODA“: erst urkomisch, dann überraschend ehrlich, menschlich und unvorhersehbar.",
+      "summary": "Vier ausgebrannte dänische Gymnasiallehrer (u. a. Mads Mikkelsen) testen eine skurrile Theorie, wonach der Mensch mit konstanten 0,5 Promille im Blut entspannter und kreativer lebt – ein Selbstversuch mit ungeahnten Folgen.",
+      "recommendedBy": "KI-Empfehlung",
+      "sourceCategory": "external",
+      "recommendationNote": "Oscar-prämiertes dänisches Kino ohne Kitsch",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=QK2hGX7U508",
+      "trailerNote": "Offizieller deutscher Trailer",
+      "posterUrl": "./posters/der-rausch-2020.jpg",
+      "watched": false,
+      "jointRating": null,
+      "jointNote": "",
+      "watchedAt": null
     }
   ]
 }

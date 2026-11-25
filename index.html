@@ -36,6 +36,9 @@
         <button type="button" class="tab-btn is-active" data-tab="open">
           Offen <span class="tab-count" id="count-open">0</span>
         </button>
+        <button type="button" class="tab-btn" data-tab="ideas">
+          Ideen <span class="tab-count" id="count-ideas">0</span>
+        </button>
         <button type="button" class="tab-btn" data-tab="watched">
           Gesehen <span class="tab-count" id="count-watched">0</span>
         </button>
@@ -81,6 +84,13 @@
           </div>
         </div>
       </section>
+
+      <div id="ideas-info-banner" class="profile-banner" hidden>
+        <div class="profile-banner-text">
+          <strong>Externe &amp; KI-Empfehlungen (getrennt von eurer Liste)</strong>
+          <span>Hier sammeln sich Vorschläge aus externen Quellen. Mit <strong>+ Übernehmen</strong> landet ein Favorit in eurer persönlichen „Offen“-Liste.</span>
+        </div>
+      </div>
 
       <div id="watched-profile-banner" class="profile-banner" hidden>
         <div class="profile-banner-text">
@@ -222,19 +232,28 @@
 
         <div class="field-row-2">
           <label class="field-label">
+            Bereich / Liste
+            <select id="edit-source-category" class="text-input">
+              <option value="personal">Persönliche Liste (Offen)</option>
+              <option value="external">Externe / KI-Idee (Tab „Ideen“)</option>
+            </select>
+          </label>
+          <label class="field-label">
             Empfohlen von
             <input type="text" id="edit-recommended-by" class="text-input" list="recommender-suggestions" placeholder="Selbst notiert">
             <datalist id="recommender-suggestions">
               <option value="Selbst notiert"></option>
               <option value="Arbeitskollegen"></option>
               <option value="Mutter (ARD Mediathek)"></option>
+              <option value="KI-Empfehlung"></option>
             </datalist>
           </label>
-          <label class="field-label">
-            Notiz zur Empfehlung (optional)
-            <input type="text" id="edit-rec-note" class="text-input" placeholder="z. B. Vermerk: sehr gut">
-          </label>
         </div>
+
+        <label class="field-label">
+          Notiz zur Empfehlung (optional)
+          <input type="text" id="edit-rec-note" class="text-input" placeholder="z. B. Vermerk: sehr gut">
+        </label>
 
         <label class="field-label">
           Deutscher YouTube-Trailer-Link
@@ -356,10 +375,16 @@
             <button type="button" class="chip-btn" data-quick-vibe="packend-ernst">Etwas Spannung / Drama</button>
           </div>
         </div>
-        <label class="mood-check-pill quick-free-toggle">
-          <input type="checkbox" id="quick-free-only">
-          <span>Nur frei verfügbar (ARD Mediathek)</span>
-        </label>
+        <div class="quick-toggles-row">
+          <label class="mood-check-pill quick-free-toggle">
+            <input type="checkbox" id="quick-free-only">
+            <span>Nur frei verfügbar (ARD Mediathek)</span>
+          </label>
+          <label class="mood-check-pill quick-free-toggle">
+            <input type="checkbox" id="quick-include-ideas">
+            <span>Auch KI-/Externe Ideen einbeziehen</span>
+          </label>
+        </div>
         <div class="quick-results-header">
           <span id="quick-results-meta" class="muted-text"></span>
         </div>

@@ -38,8 +38,18 @@ export const JOINT_VERDICTS = [
 export const RECOMMENDERS = [
   "Arbeitskollegen",
   "Selbst notiert",
-  "Mutter (ARD Mediathek)"
+  "Mutter (ARD Mediathek)",
+  "KI-Empfehlung"
 ];
+
+export const SOURCE_CATEGORIES = {
+  personal: { id: "personal", label: "Persönliche Liste (Selbst / Freunde / Familie)" },
+  external: { id: "external", label: "Externe Empfehlung / KI-Idee" }
+};
+
+export function isExternalIdea(item) {
+  return item?.sourceCategory === "external";
+}
 
 export function getVerdictMeta(rating) {
   return JOINT_VERDICTS.find((v) => v.rating === Number(rating)) || null;
@@ -64,6 +74,7 @@ export function isShortFriendly(item) {
 
 export function computeTabCounts(items) {
   let open = 0;
+  let ideas = 0;
   let watched = 0;
   let avoid = 0;
   for (const item of items) {
@@ -71,11 +82,13 @@ export function computeTabCounts(items) {
       watched += 1;
     } else if (item.fit === "low") {
       avoid += 1;
+    } else if (isExternalIdea(item)) {
+      ideas += 1;
     } else {
       open += 1;
     }
   }
-  return { open, watched, avoid };
+  return { open, ideas, watched, avoid };
 }
 
 export function filterItems(items, filters = {}) {
@@ -92,7 +105,9 @@ export function filterItems(items, filters = {}) {
   return items.filter((item) => {
     // 1. Tab filter
     if (tab === "open") {
-      if (item.watched || item.fit === "low") return false;
+      if (item.watched || item.fit === "low" || isExternalIdea(item)) return false;
+    } else if (tab === "ideas") {
+      if (item.watched || item.fit === "low" || !isExternalIdea(item)) return false;
     } else if (tab === "watched") {
       if (!item.watched) return false;
     } else if (tab === "avoid") {
@@ -242,6 +257,7 @@ export function upsertItem(items, payload) {
     fitReason: String(payload.fitReason || "").trim(),
     summary: String(payload.summary || "").trim(),
     recommendedBy: String(payload.recommendedBy || "").trim() || "Selbst notiert",
+    sourceCategory: payload.sourceCategory === "external" ? "external" : "personal",
     recommendationNote: String(payload.recommendationNote || "").trim(),
     freeSource: String(payload.freeSource || "").trim(),
     trailerUrl: String(payload.trailerUrl || "").trim(),
@@ -297,6 +313,12 @@ export function moveItemFit(items, id, nextFit) {
   return items.map((item) => (item.id === id ? { ...item, fit: nextFit } : item));
 }
 
+export function promoteIdeaToPersonal(items, id) {
+  return items.map((item) =>
+    item.id === id ? { ...item, sourceCategory: "personal" } : item
+  );
+}
+
 export function validateDataset(data) {
   if (!data || typeof data !== "object" || !Array.isArray(data.items)) {
     throw new Error("Ungültiges Datenformat: 'items'-Array fehlt.");
@@ -347,10 +369,11 @@ export function pruneShortlist(shortlistIds = [], items = []) {
 
 export function getQuickDecisionMatches(
   items = [],
-  { time = "any", vibe = "any", freeOnly = false, excludeIds = [] } = {}
+  { time = "any", vibe = "any", freeOnly = false, includeIdeas = false, excludeIds = [] } = {}
 ) {
   const basePool = items.filter((item) => {
     if (item.watched || item.fit === "low") return false;
+    if (!includeIdeas && isExternalIdea(item)) return false;
 
     if (time === "short") {
       if (!isShortFriendly(item)) return false;
@@ -387,7 +410,8 @@ export function buildTasteProfileText(items = []) {
   const liked = watched.filter((i) => Number(i.jointRating) >= 4);
   const okay = watched.filter((i) => Number(i.jointRating) === 3);
   const disliked = watched.filter((i) => i.jointRating && Number(i.jointRating) <= 2);
-  const openTitles = sortItems(items.filter((i) => !i.watched && i.fit !== "low"), "open");
+  const openTitles = sortItems(items.filter((i) => !i.watched && i.fit !== "low" && !isExternalIdea(i)), "open");
+  const ideaTitles = sortItems(items.filter((i) => !i.watched && i.fit !== "low" && isExternalIdea(i)), "ideas");
   const avoided = items.filter((i) => !i.watched && i.fit === "low");
 
   const formatWatchedLine = (item) => {
@@ -428,8 +452,13 @@ export function buildTasteProfileText(items = []) {
   }
 
   if (openTitles.length > 0) {
-    lines.push(`Aktuell schon auf unserer offenen Liste (${openTitles.length}, bitte nicht doppelt vorschlagen):`);
+    lines.push(`Aktuell schon auf unserer persönlichen Liste (${openTitles.length}, bitte nicht doppelt vorschlagen):`);
     lines.push(openTitles.map((i) => i.title).join(", "), "");
+  }
+
+  if (ideaTitles.length > 0) {
+    lines.push(`Bereits als externe/KI-Ideen vorgemerkt (${ideaTitles.length}, bitte nicht doppelt vorschlagen):`);
+    lines.push(ideaTitles.map((i) => i.title).join(", "), "");
   }
 
   if (avoided.length > 0) {

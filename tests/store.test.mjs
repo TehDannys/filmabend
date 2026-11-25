@@ -13,6 +13,7 @@ import {
   getQuickDecisionMatches,
   markWatched,
   pickRandomItem,
+  promoteIdeaToPersonal,
   pruneShortlist,
   sortItems,
   toggleShortlistId,
@@ -25,12 +26,12 @@ import { createAppServer } from "../server.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = path.join(__dirname, "..", "data", "movies.json");
 
-test("data/movies.json ist vollständig, valide und enthält alle 33 kuratierten Titel", async () => {
+test("data/movies.json ist vollständig, valide und enthält alle 40 kuratierten Titel", async () => {
   const raw = await fs.readFile(DATA_PATH, "utf8");
   const data = JSON.parse(raw);
 
   assert.equal(validateDataset(data), true);
-  assert.equal(data.items.length, 33);
+  assert.equal(data.items.length, 40);
 
   for (const item of data.items) {
     assert.ok(item.title && item.title.trim().length > 0, `Titel fehlt bei ${item.id}`);
@@ -47,17 +48,27 @@ test("data/movies.json ist vollständig, valide und enthält alle 33 kuratierten
 
   const counts = computeTabCounts(data.items);
   assert.equal(counts.open, 19);
+  assert.equal(counts.ideas, 7);
   assert.equal(counts.avoid, 2);
   assert.equal(counts.watched, 12);
 });
 
-test("filterItems trennt Tabs, Stimmungen, Kurzweilig, Frei (Mediathek) und Quellen sauber", async () => {
+test("filterItems trennt Tabs (inkl. Ideen), Stimmungen, Kurzweilig, Frei (Mediathek) und Quellen sauber", async () => {
   const data = JSON.parse(await fs.readFile(DATA_PATH, "utf8"));
   const items = data.items;
 
   const openItems = filterItems(items, { tab: "open" });
   assert.equal(openItems.length, 19);
   assert.ok(!openItems.some((i) => i.fit === "low"));
+  assert.ok(!openItems.some((i) => i.sourceCategory === "external"));
+
+  const ideaItems = filterItems(items, { tab: "ideas" });
+  assert.equal(ideaItems.length, 7);
+  assert.ok(ideaItems.every((i) => i.sourceCategory === "external" && !i.watched));
+
+  const promoted = promoteIdeaToPersonal(items, ideaItems[0].id);
+  assert.equal(filterItems(promoted, { tab: "open" }).length, 20);
+  assert.equal(filterItems(promoted, { tab: "ideas" }).length, 6);
 
   const avoidItems = filterItems(items, { tab: "avoid" });
   assert.equal(avoidItems.length, 2);
@@ -162,7 +173,7 @@ test("server.mjs liefert statische Dateien, Health-Check und speichert /api/movi
     const moviesRes = await fetch(`${baseUrl}/api/movies`);
     assert.equal(moviesRes.status, 200);
     const movies = await moviesRes.json();
-    assert.equal(movies.items.length, 33);
+    assert.equal(movies.items.length, 40);
 
     const updated = { version: 1, items: movies.items.slice(0, 2) };
     const putRes = await fetch(`${baseUrl}/api/movies`, {
@@ -197,7 +208,24 @@ test("Shortlist, Schnell-Entscheid und Geschmacksprofil-Export arbeiten korrekt"
   });
   assert.deepEqual(pruneShortlist(["der-perfekte-chef-2021", "unbekannt"], itemsAfterWatch), []);
 
-  // Schnell-Entscheid: max. 3, schließt fit=low und watched aus, Rotation funktioniert
+  // Schnell-Entscheid: max. 3, schließt fit=low, watched und standardmäßig externe Ideen aus
+  const quickPersonal = getQuickDecisionMatches(itemsAfterWatch, {
+    time: "any",
+    vibe: "any",
+    freeOnly: false,
+    includeIdeas: false
+  });
+  assert.equal(quickPersonal.total, 18);
+  assert.ok(quickPersonal.top.every((i) => i.sourceCategory !== "external"));
+
+  const quickWithIdeas = getQuickDecisionMatches(itemsAfterWatch, {
+    time: "any",
+    vibe: "any",
+    freeOnly: false,
+    includeIdeas: true
+  });
+  assert.equal(quickWithIdeas.total, 25);
+
   const quick1 = getQuickDecisionMatches(itemsAfterWatch, {
     time: "short",
     vibe: "witzig-clever",

@@ -6,6 +6,7 @@ Eine schlanke, mobile-first Web-App (PWA) für entspannte Film- und Serienabende
 - **In 30 Sekunden entscheiden:** 1-Tap-Stimmungsfilter (*Witzig & clever*, *Warmherzig*, *Packend & ernst*, *Kurzweilig*, *Frei / Mediathek*), **⚡ Schnell-Entscheid** (2 Fragen → Top 3) sowie **🎲 Zufallsvorschlag**.
 - **Merken für heute:** Beim Stöbern 2–3 Favoriten anpinnen (`📌 Merken`), direkt vergleichen oder zwischen ihnen auswürfeln.
 - **Auf euren Geschmack zugeschnitten:** Passungs-Einordnung (*★ Passt super*, *◐ Je nach Stimmung*, *⚠ Passt eher nicht*), Laufzeit auf einen Blick, eigene Kurzbeschreibungen, Empfehlungsgeber & deutsche YouTube-Trailer.
+- **Persönliche Liste vs. Externe Ideen:** Empfehlungen von euch, Freunden und Familie bleiben sauber getrennt im Tab **`Offen`** – externe & KI-Tipps landen separat im Tab **`Ideen`** (mit 1-Klick **`+ Übernehmen`**).
 - **Gemeinsam bewerten & Geschmacksprofil kopieren:** Filme/Serien hinzufügen, bearbeiten, entfernen, mit **„Unser gemeinsames Urteil“** abhaken und das Geschmacksprofil im Tab *Gesehen* (oder unter *⚙️*) für künftige Empfehlungen in die Zwischenablage kopieren.
 
 ---

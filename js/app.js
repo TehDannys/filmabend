@@ -10,6 +10,7 @@ import {
   getUniqueRecommenders,
   markWatched,
   pickRandomItem,
+  promoteIdeaToPersonal,
   pruneShortlist,
   sortItems,
   toggleShortlistId,
@@ -56,6 +57,7 @@ const state = {
     time: "any",
     vibe: "any",
     freeOnly: false,
+    includeIdeas: false,
     shownIds: []
   },
   lastRandomId: null,
@@ -69,6 +71,7 @@ const els = {
   addBtn: document.getElementById("add-btn"),
   tabBtns: Array.from(document.querySelectorAll(".tab-btn")),
   countOpen: document.getElementById("count-open"),
+  countIdeas: document.getElementById("count-ideas"),
   countWatched: document.getElementById("count-watched"),
   countAvoid: document.getElementById("count-avoid"),
   moodChips: document.getElementById("mood-chips"),
@@ -81,6 +84,7 @@ const els = {
   shortlistCount: document.getElementById("shortlist-count"),
   shortlistOpenBtn: document.getElementById("shortlist-open-btn"),
   shortlistClearBtn: document.getElementById("shortlist-clear-btn"),
+  ideasInfoBanner: document.getElementById("ideas-info-banner"),
   watchedProfileBanner: document.getElementById("watched-profile-banner"),
   exportProfileBtn: document.getElementById("export-profile-btn"),
   resultsSummary: document.getElementById("results-summary"),
@@ -114,6 +118,7 @@ const els = {
   editFreeSource: document.getElementById("edit-free-source"),
   editFitReason: document.getElementById("edit-fit-reason"),
   editSummary: document.getElementById("edit-summary"),
+  editSourceCategory: document.getElementById("edit-source-category"),
   editRecommendedBy: document.getElementById("edit-recommended-by"),
   editRecNote: document.getElementById("edit-rec-note"),
   editTrailerUrl: document.getElementById("edit-trailer-url"),
@@ -139,6 +144,7 @@ const els = {
   quickTimePills: document.getElementById("quick-time-pills"),
   quickVibePills: document.getElementById("quick-vibe-pills"),
   quickFreeOnly: document.getElementById("quick-free-only"),
+  quickIncludeIdeas: document.getElementById("quick-include-ideas"),
   quickResultsMeta: document.getElementById("quick-results-meta"),
   quickResultsList: document.getElementById("quick-results-list"),
   quickRerollBtn: document.getElementById("quick-reroll-btn"),
@@ -194,6 +200,7 @@ function renderAll() {
 
   const counts = computeTabCounts(state.data.items);
   els.countOpen.textContent = String(counts.open);
+  els.countIdeas.textContent = String(counts.ideas);
   els.countWatched.textContent = String(counts.watched);
   els.countAvoid.textContent = String(counts.avoid);
 
@@ -210,6 +217,7 @@ function renderAll() {
 
   els.shortlistBar.hidden = state.shortlist.length === 0;
   els.shortlistCount.textContent = String(state.shortlist.length);
+  els.ideasInfoBanner.hidden = state.filters.tab !== "ideas";
   els.watchedProfileBanner.hidden = state.filters.tab !== "watched";
 
   const visible = getFilteredSortedItems();
@@ -247,11 +255,13 @@ function renderQuickDialogResults() {
     btn.classList.toggle("is-active", btn.dataset.quickVibe === state.quick.vibe);
   }
   els.quickFreeOnly.checked = state.quick.freeOnly;
+  els.quickIncludeIdeas.checked = state.quick.includeIdeas;
 
   const { top, total, wrappedAround } = getQuickDecisionMatches(state.data.items, {
     time: state.quick.time,
     vibe: state.quick.vibe,
     freeOnly: state.quick.freeOnly,
+    includeIdeas: state.quick.includeIdeas,
     excludeIds: state.quick.shownIds
   });
 
@@ -374,6 +384,7 @@ function openEditDialog(id = null) {
     els.editFreeSource.value = item.freeSource || "";
     els.editFitReason.value = item.fitReason || "";
     els.editSummary.value = item.summary || "";
+    els.editSourceCategory.value = item.sourceCategory === "external" ? "external" : "personal";
     els.editRecommendedBy.value = item.recommendedBy || "Selbst notiert";
     els.editRecNote.value = item.recommendationNote || "";
     els.editTrailerUrl.value = item.trailerUrl || "";
@@ -386,7 +397,8 @@ function openEditDialog(id = null) {
     els.editId.value = "";
     els.editType.value = "film";
     els.editFit.value = "high";
-    els.editRecommendedBy.value = "Selbst notiert";
+    els.editSourceCategory.value = state.filters.tab === "ideas" ? "external" : "personal";
+    els.editRecommendedBy.value = state.filters.tab === "ideas" ? "KI-Empfehlung" : "Selbst notiert";
     renderMoodCheckboxes(els.editMoodBoxes, ["witzig-clever"]);
     els.editDeleteBtn.hidden = true;
   }
@@ -492,6 +504,12 @@ function bindEvents() {
     renderQuickDialogResults();
   });
 
+  els.quickIncludeIdeas.addEventListener("change", () => {
+    state.quick.includeIdeas = els.quickIncludeIdeas.checked;
+    state.quick.shownIds = [];
+    renderQuickDialogResults();
+  });
+
   els.quickRerollBtn.addEventListener("click", () => {
     const currentlyShown = Array.from(
       els.quickResultsList.querySelectorAll("[data-id]")
@@ -568,6 +586,9 @@ function bindEvents() {
       openEditDialog(id);
     } else if (action === "pin") {
       togglePin(id);
+    } else if (action === "promote") {
+      state.data.items = promoteIdeaToPersonal(state.data.items, id);
+      await saveAndRender("In eure persönliche „Offen“-Liste übernommen!");
     } else if (action === "unwatch") {
       state.data.items = unmarkWatched(state.data.items, id);
       await saveAndRender("Wieder auf „Offen“ gesetzt.");
@@ -623,6 +644,7 @@ function bindEvents() {
       freeSource: els.editFreeSource.value,
       fitReason: els.editFitReason.value,
       summary: els.editSummary.value,
+      sourceCategory: els.editSourceCategory.value,
       recommendedBy: els.editRecommendedBy.value,
       recommendationNote: els.editRecNote.value,
       trailerUrl: els.editTrailerUrl.value,

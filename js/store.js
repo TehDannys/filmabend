@@ -131,7 +131,15 @@ export async function loadInitialData() {
       const updatedExisting = localData.items.map((item) => {
         if (!needsUpgrade) return item;
         const curated = staticById.get(item.id);
-        return curated ? { ...item, posterUrl: curated.posterUrl } : item;
+        if (!curated) return item;
+        const upgraded = { ...item, posterUrl: curated.posterUrl };
+        if (!item.watched && curated.watched) {
+          upgraded.watched = true;
+          upgraded.jointRating = curated.jointRating;
+          upgraded.jointNote = curated.jointNote;
+          upgraded.watchedAt = curated.watchedAt;
+        }
+        return upgraded;
       });
       const merged = {
         version: Math.max(localData.version || 1, staticData.version || 1),

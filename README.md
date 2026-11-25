@@ -30,5 +30,13 @@ Eine schlanke, mobile-first Web-App (PWA) für entspannte Film- und Serienabende
 2. In den Repository-Einstellungen unter **Pages → Source: Deploy from a branch (`main` / `/ (root)`)** aktivieren.
 3. Die fertige URL am Handy öffnen und auf den Home-Bildschirm legen. Über das Zahnrad (**⚙️ Backup & Sync**) könnt ihr bei Bedarf einen GitHub-Sync zwischen Mac und Handy aktivieren oder per JSON sichern.
 
+## Standard-Workflow für Änderungen & Updates
+Alle Änderungen (neue Filme, Bewertungen, UI-Updates) laufen über den eingebauten Prüf- und Publish-Workflow (siehe [WORKFLOW.md](./WORKFLOW.md)):
+```bash
+npm run verify              # Syntax, Unit-Tests, Poster-Check & Privacy-Prüfung
+npm run verify:links        # zusätzlich alle YouTube-Trailer-Links prüfen
+npm run publish -- "Update" # prüft alles, committet und pusht zu GitHub Pages
+```
+
 ## Antigravity-Workspace
-Um künftig direkt in diesem Projektordner weiterzuarbeiten (z. B. für Iteration 2 mit neuen Empfehlungen basierend auf euren Favoriten), öffne einfach `/Users/danielgerhardt/Documents/filmabend` als Workspace.
+Um künftig direkt in diesem Projektordner weiterzuarbeiten, öffne einfach `~/Documents/filmabend` als Workspace.

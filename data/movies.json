@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "items": [
     {
       "id": "die-unglaubliche-geschichte-der-roseninsel-2020",
@@ -203,10 +203,10 @@
       "trailerUrl": "https://www.youtube.com/watch?v=XwL2BoqAdMs",
       "trailerNote": "Offizieller Trailer (Filmfest München)",
       "posterUrl": "./posters/ungeschminkt-2024.jpg",
-      "watched": false,
-      "jointRating": null,
-      "jointNote": "",
-      "watchedAt": null
+      "watched": true,
+      "jointRating": 5,
+      "jointNote": "Guter Film!",
+      "watchedAt": "2026-11-24T20:00:00.000Z"
     },
     {
       "id": "marcel-the-shell-with-shoes-on-2021",
@@ -644,6 +644,328 @@
       "jointRating": null,
       "jointNote": "",
       "watchedAt": null
+    },
+    {
+      "id": "die-unfassbaren-2013",
+      "title": "Die Unfassbaren – Now You See Me",
+      "originalTitle": "Now You See Me",
+      "year": 2013,
+      "type": "film",
+      "runtimeMinutes": 115,
+      "runtimeLabel": "115 Min.",
+      "moods": [
+        "witzig-clever",
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Temporeich"
+      ],
+      "fit": "high",
+      "fitReason": "Stilvolle, clevere Unterhaltung voller Tricks und überraschender Wendungen.",
+      "summary": "Vier brillante Straßenmagier rauben während ihrer Live-Shows scheinbar unmögliche Banktresore aus und verschenken die Beute ans Publikum. Ein temporeiches Katz-und-Maus-Spiel mit dem FBI voller eleganter Täuschungen.",
+      "recommendedBy": "Gemeinsam geschaut",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=7_KvYYURQaY",
+      "trailerNote": "Offizieller deutscher Trailer (LEONINE)",
+      "posterUrl": "./posters/die-unfassbaren-2013.jpg",
+      "watched": true,
+      "jointRating": 4,
+      "jointNote": "Schauen wir gerade – gefällt uns gut.",
+      "watchedAt": "2026-11-25T16:00:00.000Z"
+    },
+    {
+      "id": "ich-sehe-was-was-du-nicht-siehst-2023",
+      "title": "Ich sehe was, was du nicht siehst",
+      "originalTitle": "The Wonderful Story of Henry Sugar",
+      "year": 2023,
+      "type": "film",
+      "runtimeMinutes": 39,
+      "runtimeLabel": "39 Min.",
+      "moods": [
+        "witzig-clever",
+        "warmherzig"
+      ],
+      "moodLabels": [
+        "Witzig & clever",
+        "Originell"
+      ],
+      "fit": "high",
+      "fitReason": "Außergewöhnlich kreativ inszenierter Kurzfilm von Wes Anderson nach Roald Dahl.",
+      "summary": "Ein wohlhabender Müßiggänger entdeckt den Bericht über einen Mann, der ohne Augen sehen kann, und will diese Fähigkeit fürs Casino erlernen. Von Wes Anderson verspielt wie ein lebendiges Theaterstück mit wunderbarer Szenengestaltung erzählt.",
+      "recommendedBy": "Gemeinsam geschaut",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=jRtBFFNfSt0",
+      "trailerNote": "Offizieller deutscher Netflix-Trailer",
+      "posterUrl": "./posters/ich-sehe-was-was-du-nicht-siehst-2023.jpg",
+      "watched": true,
+      "jointRating": 4,
+      "jointNote": "Sehr cooler Film, schöne Szenengestaltung, besonders im Format. Die anderen 3 Kurzfilme der Serie nicht gut.",
+      "watchedAt": "2026-11-23T20:00:00.000Z"
+    },
+    {
+      "id": "the-dawn-wall-2017",
+      "title": "Durch die Wand – The Dawn Wall",
+      "originalTitle": "The Dawn Wall",
+      "year": 2017,
+      "type": "doc",
+      "runtimeMinutes": 100,
+      "runtimeLabel": "100 Min.",
+      "moods": [
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Packend & ernst",
+        "Spannend"
+      ],
+      "fit": "high",
+      "fitReason": "Extrem fesselnde, menschliche Kletter-Doku über Ausdauer und Freundschaft.",
+      "summary": "Die Kletterer Tommy Caldwell und Kevin Jorgeson versuchen das Unmögliche: die 900 Meter hohe, scheinbar unbezwingbare Granitwand der Dawn Wall im Yosemite-Nationalpark frei zu durchsteigen – eine mitreißende, überraschend emotionale Dokumentation.",
+      "recommendedBy": "Gemeinsam geschaut",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=OGYWvl5EY60",
+      "trailerNote": "Offizieller deutscher Trailer",
+      "posterUrl": "./posters/the-dawn-wall-2017.jpg",
+      "watched": true,
+      "jointRating": 4,
+      "jointNote": "Für eine Doku spannend gemacht.",
+      "watchedAt": "2026-11-22T20:00:00.000Z"
+    },
+    {
+      "id": "avatar-aang-der-herr-der-elemente-2026",
+      "title": "Avatar Aang: Der Herr der Elemente",
+      "originalTitle": "Avatar Aang: The Last Airbender",
+      "year": 2026,
+      "type": "film",
+      "runtimeMinutes": 99,
+      "runtimeLabel": "99 Min.",
+      "moods": [
+        "warmherzig",
+        "witzig-clever"
+      ],
+      "moodLabels": [
+        "Warmherzig",
+        "Abenteuer"
+      ],
+      "fit": "high",
+      "fitReason": "Starke Figuren und gelungene Fortsetzung rund um den jungen erwachsenen Aang.",
+      "summary": "Einige Jahre nach dem Ende der Originalserie begeben sich Aang, Katara, Sokka, Toph und Zuko als junge Erwachsene auf eine neue Reise, um eine uralte Kraft der Luftbändiger vor falschen Händen zu schützen.",
+      "recommendedBy": "Gemeinsam geschaut",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=xN-f2M1RZ7Y",
+      "trailerNote": "Deutscher Trailer (OmU)",
+      "posterUrl": "./posters/avatar-aang-der-herr-der-elemente-2026.jpg",
+      "watched": true,
+      "jointRating": 4,
+      "jointNote": "",
+      "watchedAt": "2026-11-21T20:00:00.000Z"
+    },
+    {
+      "id": "perfect-days-2023",
+      "title": "Perfect Days",
+      "originalTitle": "Perfect Days",
+      "year": 2023,
+      "type": "film",
+      "runtimeMinutes": 124,
+      "runtimeLabel": "124 Min.",
+      "moods": [
+        "warmherzig"
+      ],
+      "moodLabels": [
+        "Warmherzig",
+        "Entschleunigend"
+      ],
+      "fit": "medium",
+      "fitReason": "Sehr ruhiges, poetisches Alltagskino von Wim Wenders – bewusst langsam erzählt.",
+      "summary": "Hirayama reinigt in Tokio mit großer Ruhe und Hingabe öffentliche Toiletten, hört alte Musik-Kassetten, fotografiert Bäume und genießt die kleinen Momente des Alltags. Ein entschleunigtes, atmosphärisches Porträt über Zufriedenheit.",
+      "recommendedBy": "Gemeinsam geschaut",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=h1JHzXu04QI",
+      "trailerNote": "Offizieller deutscher Trailer (DCM)",
+      "posterUrl": "./posters/perfect-days-2023.jpg",
+      "watched": true,
+      "jointRating": 4,
+      "jointNote": "Cooler Film, mal was Entschleunigendes, anderes, aber zeitweise etwas langweilig.",
+      "watchedAt": "2026-11-20T20:00:00.000Z"
+    },
+    {
+      "id": "der-junge-der-den-wind-einfing-2019",
+      "title": "Der Junge, der den Wind einfing",
+      "originalTitle": "The Boy Who Harnessed the Wind",
+      "year": 2019,
+      "type": "film",
+      "runtimeMinutes": 113,
+      "runtimeLabel": "113 Min.",
+      "moods": [
+        "warmherzig",
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Warmherzig",
+        "Inspirierend"
+      ],
+      "fit": "medium",
+      "fitReason": "Berührende wahre Geschichte, allerdings recht klassisch und stellenweise vorhersehbar erzählt.",
+      "summary": "In einer verheerenden Dürreperiode in Malawi entdeckt der 13-jährige William in einem Schulbuch das Prinzip einer Windkraftanlage und baut aus Schrott eine Pumpe, um sein Dorf vor der Hungersnot zu retten.",
+      "recommendedBy": "Gemeinsam geschaut",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=Xp2g6tap_FE",
+      "trailerNote": "Offizieller Netflix-Trailer",
+      "posterUrl": "./posters/der-junge-der-den-wind-einfing-2019.jpg",
+      "watched": true,
+      "jointRating": 3,
+      "jointNote": "Nett, aber etwas vorhersehbar.",
+      "watchedAt": "2026-11-19T20:00:00.000Z"
+    },
+    {
+      "id": "chantal-im-maerchenland-2024",
+      "title": "Chantal im Märchenland",
+      "originalTitle": "Chantal im Märchenland",
+      "year": 2024,
+      "type": "film",
+      "runtimeMinutes": 123,
+      "runtimeLabel": "123 Min.",
+      "moods": [
+        "witzig-clever"
+      ],
+      "moodLabels": [
+        "Leicht & witzig"
+      ],
+      "fit": "medium",
+      "fitReason": "Lockere deutsche Märchenparodie für leichte Unterhaltung.",
+      "summary": "Dauer-Influencerin Chantal landet durch einen antiken Zauberspiegel mit ihrer besten Freundin mitten in einer klassischen Märchenwelt und wirbelt dort Prinzen, Hexen und Dornröschen-Klischees kräftig durcheinander.",
+      "recommendedBy": "Gemeinsam geschaut",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=ObUzbZxarqg",
+      "trailerNote": "Offizieller deutscher Trailer",
+      "posterUrl": "./posters/chantal-im-maerchenland-2024.jpg",
+      "watched": true,
+      "jointRating": 3,
+      "jointNote": "",
+      "watchedAt": "2026-11-18T20:00:00.000Z"
+    },
+    {
+      "id": "johnny-english-man-lebt-nur-dreimal-2018",
+      "title": "Johnny English – Man lebt nur dreimal",
+      "originalTitle": "Johnny English Strikes Again",
+      "year": 2018,
+      "type": "film",
+      "runtimeMinutes": 89,
+      "runtimeLabel": "89 Min.",
+      "moods": [
+        "witzig-clever"
+      ],
+      "moodLabels": [
+        "Kurzweilig",
+        "Slapstick"
+      ],
+      "fit": "medium",
+      "fitReason": "Kurze, unkomplizierte Agenten-Parodie mit Rowan Atkinson für entspannte Abende.",
+      "summary": "Nach einem Cyberangriff auf den britischen Geheimdienst werden alle aktiven Agenten enttarnt – also muss der herrlich analoge, tollpatschige Ex-Agent Johnny English aus dem Ruhestand zurückkehren.",
+      "recommendedBy": "Gemeinsam geschaut",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=XJEjJVZEr74",
+      "trailerNote": "Offizieller deutscher Trailer (Universal)",
+      "posterUrl": "./posters/johnny-english-man-lebt-nur-dreimal-2018.jpg",
+      "watched": true,
+      "jointRating": 3,
+      "jointNote": "Kurzweilig, unterhaltsam, mal ganz nett.",
+      "watchedAt": "2026-11-17T20:00:00.000Z"
+    },
+    {
+      "id": "tenor-eine-stimme-zwei-welten-2022",
+      "title": "Tenor: Eine Stimme – Zwei Welten",
+      "originalTitle": "Ténor",
+      "year": 2022,
+      "type": "film",
+      "runtimeMinutes": 100,
+      "runtimeLabel": "100 Min.",
+      "moods": [
+        "warmherzig"
+      ],
+      "moodLabels": [
+        "Warmherzig",
+        "Musik"
+      ],
+      "fit": "medium",
+      "fitReason": "Sympathische Idee (Rap trifft Oper), aber dramaturgisch recht glatt und vorhersehbar.",
+      "summary": "Der junge Pariser Sushi-Kurier und Battle-Rapper Antoine liefert versehentlich an die Opéra Garnier – wo eine Gesangslehrerin sein außergewöhnliches Operntalent entdeckt und ihn heimlich unterrichtet.",
+      "recommendedBy": "Gemeinsam geschaut",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=2cjw-2SwhyE",
+      "trailerNote": "Offizieller deutscher Trailer (ARTHAUS)",
+      "posterUrl": "./posters/tenor-eine-stimme-zwei-welten-2022.jpg",
+      "watched": true,
+      "jointRating": 3,
+      "jointNote": "Thema gut, etwas vorhersehbar und wenig realistisch.",
+      "watchedAt": "2026-11-16T20:00:00.000Z"
+    },
+    {
+      "id": "tenzing-2026",
+      "title": "Tenzing",
+      "originalTitle": "Tenzing",
+      "year": 2026,
+      "type": "film",
+      "runtimeMinutes": 125,
+      "runtimeLabel": "125 Min.",
+      "moods": [
+        "packend-ernst"
+      ],
+      "moodLabels": [
+        "Biopic",
+        "Ruhig"
+      ],
+      "fit": "medium",
+      "fitReason": "Hochwertig produziertes Bergsteiger-Biopic, dramaturgisch aber eher verhalten.",
+      "summary": "Das Drama erzählt die Erstbesteigung des Mount Everest 1953 aus der Perspektive des Sherpas Tenzing Norgay, der an der Seite von Edmund Hillary gegen extreme Naturgewalten und koloniale Hierarchien ankämpft.",
+      "recommendedBy": "Gemeinsam geschaut",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=AM_JmoCRtGU",
+      "trailerNote": "Offizieller deutscher Trailer",
+      "posterUrl": "./posters/tenzing-2026.jpg",
+      "watched": true,
+      "jointRating": 3,
+      "jointNote": "Gut gemachter Film, mal was anderes, aber auch nicht sehr spannend.",
+      "watchedAt": "2026-11-15T20:00:00.000Z"
+    },
+    {
+      "id": "coda-2021",
+      "title": "CODA",
+      "originalTitle": "CODA",
+      "year": 2021,
+      "type": "film",
+      "runtimeMinutes": 111,
+      "runtimeLabel": "111 Min.",
+      "moods": [
+        "warmherzig"
+      ],
+      "moodLabels": [
+        "Warmherzig",
+        "Coming-of-Age"
+      ],
+      "fit": "medium",
+      "fitReason": "Herzerwärmendes Musik-Drama, aber sehr formelhaft im klassischen US-Feelgood-Stil.",
+      "summary": "Als einzige Hörende in einer gehörlosen Fischerfamilie steht die 17-jährige Ruby zwischen der Verantwortung für das elterliche Geschäft und ihrem großen Traum von einer Gesangskarriere.",
+      "recommendedBy": "Gemeinsam geschaut",
+      "recommendationNote": "",
+      "freeSource": "",
+      "trailerUrl": "https://www.youtube.com/watch?v=QW0pBK3Vnbk",
+      "trailerNote": "Offizieller deutscher Trailer (Apple TV+)",
+      "posterUrl": "./posters/coda-2021.jpg",
+      "watched": true,
+      "jointRating": 2,
+      "jointNote": "Gut gemachter Film, aber sehr USA-klischeehaft und vorhersehbar.",
+      "watchedAt": "2026-11-14T20:00:00.000Z"
     }
   ]
 }

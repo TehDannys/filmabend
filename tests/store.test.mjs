@@ -25,12 +25,12 @@ import { createAppServer } from "../server.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = path.join(__dirname, "..", "data", "movies.json");
 
-test("data/movies.json ist vollständig, valide und enthält alle 22 kuratierten Titel", async () => {
+test("data/movies.json ist vollständig, valide und enthält alle 33 kuratierten Titel", async () => {
   const raw = await fs.readFile(DATA_PATH, "utf8");
   const data = JSON.parse(raw);
 
   assert.equal(validateDataset(data), true);
-  assert.equal(data.items.length, 22);
+  assert.equal(data.items.length, 33);
 
   for (const item of data.items) {
     assert.ok(item.title && item.title.trim().length > 0, `Titel fehlt bei ${item.id}`);
@@ -46,9 +46,9 @@ test("data/movies.json ist vollständig, valide und enthält alle 22 kuratierten
   }
 
   const counts = computeTabCounts(data.items);
-  assert.equal(counts.open, 20);
+  assert.equal(counts.open, 19);
   assert.equal(counts.avoid, 2);
-  assert.equal(counts.watched, 0);
+  assert.equal(counts.watched, 12);
 });
 
 test("filterItems trennt Tabs, Stimmungen, Kurzweilig, Frei (Mediathek) und Quellen sauber", async () => {
@@ -56,7 +56,7 @@ test("filterItems trennt Tabs, Stimmungen, Kurzweilig, Frei (Mediathek) und Quel
   const items = data.items;
 
   const openItems = filterItems(items, { tab: "open" });
-  assert.equal(openItems.length, 20);
+  assert.equal(openItems.length, 19);
   assert.ok(!openItems.some((i) => i.fit === "low"));
 
   const avoidItems = filterItems(items, { tab: "avoid" });
@@ -64,7 +64,7 @@ test("filterItems trennt Tabs, Stimmungen, Kurzweilig, Frei (Mediathek) und Quel
   assert.deepEqual(avoidItems.map((i) => i.id).sort(), ["der-schacht-2019", "pans-labyrinth-2006"]);
 
   const freeItems = filterItems(items, { tab: "open", mood: "free" });
-  assert.equal(freeItems.length, 6);
+  assert.equal(freeItems.length, 5);
   assert.ok(freeItems.every((i) => i.freeSource === "ARD Mediathek"));
 
   const shortItems = filterItems(items, { tab: "open", mood: "kurzweilig" });
@@ -162,7 +162,7 @@ test("server.mjs liefert statische Dateien, Health-Check und speichert /api/movi
     const moviesRes = await fetch(`${baseUrl}/api/movies`);
     assert.equal(moviesRes.status, 200);
     const movies = await moviesRes.json();
-    assert.equal(movies.items.length, 22);
+    assert.equal(movies.items.length, 33);
 
     const updated = { version: 1, items: movies.items.slice(0, 2) };
     const putRes = await fetch(`${baseUrl}/api/movies`, {
@@ -211,7 +211,7 @@ test("Shortlist, Schnell-Entscheid und Geschmacksprofil-Export arbeiten korrekt"
     vibe: "any",
     freeOnly: true
   });
-  assert.equal(quickFree.total, 6);
+  assert.equal(quickFree.total, 5);
   assert.equal(quickFree.top.length, 3);
 
   const quickNext = getQuickDecisionMatches(data.items, {
@@ -220,23 +220,19 @@ test("Shortlist, Schnell-Entscheid und Geschmacksprofil-Export arbeiten korrekt"
     freeOnly: true,
     excludeIds: quickFree.top.map((i) => i.id)
   });
-  assert.equal(quickNext.top.length, 3);
+  assert.equal(quickNext.top.length, 2);
   assert.notDeepEqual(
     quickNext.top.map((i) => i.id),
     quickFree.top.map((i) => i.id)
   );
 
-  // Geschmacksprofil-Export
-  const withDislike = markWatched(itemsAfterWatch, "monsieur-claude-und-seine-toechter-2014", {
-    jointRating: 2,
-    jointNote: "Etwas zu klischeehaft"
-  });
-  const profile = buildTasteProfileText(withDislike);
+  // Geschmacksprofil-Export mit echten gesehenen Daten
+  const profile = buildTasteProfileText(data.items);
   assert.ok(profile.includes("auf Deutsch"));
-  assert.ok(profile.includes("Der perfekte Chef"));
-  assert.ok(profile.includes("Genialer Humor"));
-  assert.ok(profile.includes("Monsieur Claude und seine Töchter"));
-  assert.ok(profile.includes("Etwas zu klischeehaft"));
+  assert.ok(profile.includes("Ungeschminkt"));
+  assert.ok(profile.includes("Guter Film!"));
+  assert.ok(profile.includes("CODA"));
+  assert.ok(profile.includes("USA-klischeehaft"));
   assert.ok(profile.includes("Pans Labyrinth"));
 });
 

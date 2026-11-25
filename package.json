@@ -1,0 +1,14 @@
+{
+  "name": "filmabend",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Mobile-First Web-App (PWA) für schnelle, stressfreie Film- und Serienauswahl zu zweit.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test tests/store.test.mjs",
+    "verify": "node scripts/verify.mjs",
+    "verify:links": "node scripts/verify.mjs --check-links",
+    "publish": "node scripts/publish.mjs"
+  }
+}

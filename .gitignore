@@ -1,0 +1,6 @@
+.DS_Store
+.env
+.env.*
+.privacy-blocklist
+data/movies.json.tmp
+*.log
